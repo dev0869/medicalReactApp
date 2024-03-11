@@ -2,11 +2,11 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 
-const Layout = ({ props}) => {
+const Layout = ({children}:{children:React.ReactNode}) => {
   return (
     <>
       <Header />
-      {props.children}
+      {children}
       <Footer />
     </>
   );
