@@ -2,11 +2,8 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Search from "../ui/search";
 import { Menu, Search as SearchIco } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Link } from "react-router-dom";
 
 export function SearchMobileV1() {
   return (
@@ -26,8 +23,10 @@ export function SearchMobileV1() {
 const Header = () => {
   return (
     <>
-      <div className="p-4 items-center flex justify-between ">
-        <div className="font-bold text-xl text-blue-500">Excelus MedAssits</div>
+      <div className="p-4 items-center sticky top-0 bg-[#FAFBFB] shadow-md w-full  flex justify-between ">
+        <Link to={"/"} className="font-bold text-xl text-blue-500">
+          Excelus MedAssits
+        </Link>
         <nav></nav>
         <div className="md:hidden flex items-center gap-4">
           <ToggleNav />
@@ -35,7 +34,9 @@ const Header = () => {
         </div>
         <div className="hidden md:flex items-center gap-4">
           <Search />
-          <Button>Login</Button>
+          <Button>
+            <Link to={"/auth/login"}>Login</Link>
+          </Button>
         </div>
       </div>
     </>
