@@ -1,4 +1,4 @@
-import { SettingsIcon, ShoppingCartIcon } from "lucide-react";
+import { SettingsIcon, ShoppingCartIcon, CircleUser,CarFront ,BriefcaseMedical ,Accessibility  } from "lucide-react";
 
 export const Routes = [
   {
@@ -16,29 +16,57 @@ export const Routes = [
   },
 ];
 
+export const UserRoutes = [
+  {
+    title: "Shopping",
+    path: "shopping",
+    icon: <ShoppingCartIcon />,
+  },
+  {
+    title: "Shopping",
+    path: "shopping",
+    icon: <ShoppingCartIcon />,
+  },
+  {
+    title: "Trips",
+    path: "trips",
+    icon: <CarFront  />,
+  },
+  {
+    title: "Profile",
+    path: "profile",
+    icon: <CircleUser />,
+  },
+  {
+    title: "Profile Settings",
+    path: "setting",
+    icon: <SettingsIcon />,
+  },
+];
+
 export const AdminRoutes = [
   {
-    title: "Shopping",
-    path: "shopping",
-    icon: <ShoppingCartIcon />,
+    title: "Patient",
+    path: "patient",
+    icon: <Accessibility  />,
   },
   {
-    title: "Shopping",
-    path: "shopping",
-    icon: <ShoppingCartIcon />,
+    title: "Doctor",
+    path: "doctprList",
+    icon: <BriefcaseMedical  />,
   },
   {
-    title: "Shopping",
-    path: "shopping",
-    icon: <ShoppingCartIcon />,
+    title: "Trips",
+    path: "trips",
+    icon: <CarFront  />,
   },
   {
-    title: "Shopping",
-    path: "shopping",
-    icon: <ShoppingCartIcon />,
+    title: "Profile",
+    path: "profile",
+    icon: <CircleUser />,
   },
   {
-    title: "Settings",
+    title: "Profile Settings",
     path: "setting",
     icon: <SettingsIcon />,
   },

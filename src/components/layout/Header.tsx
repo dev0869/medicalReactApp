@@ -4,7 +4,9 @@ import { Menu, Search as SearchIco } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Link } from "react-router-dom";
-
+import UserBadge from "../ui/userBadge";
+import { accessToken } from "@/apis";
+import LangChanger from "../ui/langChanger";
 export function SearchMobileV1() {
   return (
     <Dialog>
@@ -23,7 +25,7 @@ export function SearchMobileV1() {
 const Header = () => {
   return (
     <>
-      <div className="p-4 items-center sticky top-0 bg-[#FAFBFB] shadow-md w-full  flex justify-between ">
+      <div className="p-4 z-10 items-center sticky top-0 bg-[#FAFBFB] shadow-md w-full  flex justify-between ">
         <Link to={"/"} className="font-bold text-xl text-blue-500">
           Excelus MedAssits
         </Link>
@@ -34,9 +36,14 @@ const Header = () => {
         </div>
         <div className="hidden md:flex items-center gap-4">
           <Search />
-          <Button>
-            <Link to={"/auth/login"}>Login</Link>
-          </Button>
+          <LangChanger />
+          {accessToken ? (
+            <UserBadge />
+          ) : (
+            <Button>
+              <Link to={"/auth/login"}>Login</Link>
+            </Button>
+          )}
         </div>
       </div>
     </>

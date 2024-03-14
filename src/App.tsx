@@ -4,6 +4,7 @@ import { About, Contact, Home, NotFound } from "./pages";
 import Login from "./components/auth/login";
 import useAuthVerifyHooks from "./hooks/useAuthHooks";
 import Admin from "./pages/admin/admin";
+import "./i18n";
 const App = () => {
   useAuthVerifyHooks();
 

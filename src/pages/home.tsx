@@ -2,7 +2,9 @@ import Carasol from "@/components/ui/carasol";
 import { Button } from "@/components/ui/button";
 import { SetStateAction, useState } from "react";
 import { CheckIcon, StarIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 const Home = () => {
+  const { t } = useTranslation();
   const plans = [
     {
       name: "Basic",
@@ -24,7 +26,6 @@ const Home = () => {
     },
   ];
   const [searchText, setSearchText] = useState("");
-
   const setSearch = () => {
     console.log("Search button clicked");
   };
@@ -39,17 +40,13 @@ const Home = () => {
       <Carasol />
       <section className="container mx-auto mt-8 p-3">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <div className="badge">Excelus MedAssits</div>
-            <h2 className="text-3xl font-bold tracking-tighter text-seconadry sm:text-4xl md:text-5xl/none">
-              Best Clinic and hospital Networks in India
-            </h2>
-            <p className="max-w-[900px] text-gray-500 md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed dark:text-gray-400">
-              Accessible, quality healthcare services tailored for international
-              clients. We prioritize your well-being. Providing comprehensive
-              medical solutions with a global touch.
-            </p>
-          </div>
+          <div className="badge">Excelus MedAssits</div>
+          <h2 className="text-3xl font-bold tracking-tighter text-seconadry sm:text-4xl md:text-5xl/none">
+            {t("home.header")}
+          </h2>
+          <p className="max-w-[900px] pb-9 text-gray-500 md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed dark:text-gray-400">
+            {t("home.para")}
+          </p>
         </div>
       </section>
 
@@ -88,11 +85,10 @@ const Home = () => {
       <div className="container mx-auto p-3 flex items-center justify-center flex-col">
         <div className="w-full my-4">
           <h1 className="font-bold text-center w-full text-primary text-4xl sm:text-5xl">
-            Choose the perfect plan for your health
+            {t("plan.0.header")}
           </h1>
           <p className="mx-auto text-center mt-4 max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-            Compassionate care from experienced professionals. We're committed
-            to your well-being.
+            {t("plan.0.para")}
           </p>
         </div>
 

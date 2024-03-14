@@ -1,4 +1,6 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import { toast } from "react-toastify";
+
 export const accessToken = localStorage.getItem("token");
 export const config = {
   headers: {
@@ -18,7 +20,7 @@ export const ApiRequest = async <T>(
     let response;
     switch (method) {
       case "GET":
-        response = await api.get(url,config);
+        response = await api.get(url, config);
         break;
       case "POST":
         response = await api.post(url, payload);
@@ -32,10 +34,10 @@ export const ApiRequest = async <T>(
       default:
         throw new Error(`Unsupported HTTP method: ${method}`);
     }
-    // console.log(response.data);
     return response.data;
   } catch (error) {
-    console.log(error);
+    const myError = error as AxiosError<{ message: string }>;
+    toast.error(myError.response?.data.message);
     throw new Error(error as string | undefined);
   }
 };
