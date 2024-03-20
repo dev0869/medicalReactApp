@@ -8,7 +8,7 @@ export const config = {
   },
 };
 
-export const api = axios.create({ baseURL: "http://localhost:9001/api/" });
+export const api = axios.create({ baseURL: "http://192.168.1.22:9001/api/" });
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
 
 export const ApiRequest = async <T>(

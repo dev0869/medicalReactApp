@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import UserBadge from "../ui/userBadge";
 import { accessToken } from "@/apis";
 import LangChanger from "../ui/langChanger";
+import { Routes } from "@/routes";
 export function SearchMobileV1() {
   return (
     <Dialog>
@@ -25,11 +26,19 @@ export function SearchMobileV1() {
 const Header = () => {
   return (
     <>
-      <div className="p-4 z-10 items-center sticky top-0 bg-[#FAFBFB] shadow-md w-full  flex justify-between ">
-        <Link to={"/"} className="font-bold text-xl text-blue-500">
-          Excelus MedAssits
+      <div className="px-4 z-10 items-center sticky top-0 ' bg-white shadow-md w-full  flex justify-between ">
+        <Link to={"/"}>
+          <img src="/logo.png" className="bac" width={100} alt="dsada" />
         </Link>
-        <nav></nav>
+        <nav className=" flex gap-4 text-lg">
+          {Routes.map((ele, id) => {
+            return (
+              <Link key={id} to={ele.path}>
+                {ele.title}
+              </Link>
+            );
+          })}
+        </nav>
         <div className="md:hidden flex items-center gap-4">
           <ToggleNav />
           <SearchMobileV1 />

@@ -1,18 +1,28 @@
-import { SettingsIcon, ShoppingCartIcon, CircleUser,CarFront ,BriefcaseMedical ,Accessibility  } from "lucide-react";
+import {
+  SettingsIcon,
+  ShoppingCartIcon,
+  CircleUser,
+  CarFront,
+  BriefcaseMedical,
+  Accessibility,
+} from "lucide-react";
 
 export const Routes = [
   {
-    title: "Contact Us",
-    path: "contact",
+    title: "Find Doctors",
+    path: "doctors",
+  },
+  {
+    title: "Find Hospitals",
+    path: "hospitals",
   },
   {
     title: "About Us",
     path: "about",
   },
-
   {
-    title: "Page Not Found",
-    path: "**",
+    title: "Contact Us",
+    path: "contact",
   },
 ];
 
@@ -30,7 +40,7 @@ export const UserRoutes = [
   {
     title: "Trips",
     path: "trips",
-    icon: <CarFront  />,
+    icon: <CarFront />,
   },
   {
     title: "Profile",
@@ -48,17 +58,17 @@ export const AdminRoutes = [
   {
     title: "Patient",
     path: "patient",
-    icon: <Accessibility  />,
+    icon: <Accessibility />,
   },
   {
     title: "Doctor",
-    path: "doctprList",
-    icon: <BriefcaseMedical  />,
+    path: "doctorList",
+    icon: <BriefcaseMedical />,
   },
   {
     title: "Trips",
     path: "trips",
-    icon: <CarFront  />,
+    icon: <CarFront />,
   },
   {
     title: "Profile",

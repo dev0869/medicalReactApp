@@ -20,11 +20,10 @@ const LangChanger = () => {
 
   return (
     <div className="flex items-center space-x-2">
-      <LanguagesIcon className="w-5 h-5" />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button size="sm" variant="outline">
-            <GlobeIcon className="w-4 h-4 mr-1.5" />
+            <LanguagesIcon className="w-5 h-5" />
             {curLang}
           </Button>
         </DropdownMenuTrigger>
@@ -32,6 +31,7 @@ const LangChanger = () => {
           <DropdownMenuGroup>
             {locals.map((ele, id) => (
               <DropdownMenuItem key={id} onClick={() => languageHandler(ele)}>
+                <GlobeIcon className="w-4 h-4 mr-1.5" />
                 {ele}
               </DropdownMenuItem>
             ))}

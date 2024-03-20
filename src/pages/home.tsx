@@ -1,9 +1,12 @@
 import Carasol from "@/components/ui/carasol";
 import { Button } from "@/components/ui/button";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import { CheckIcon, StarIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const plans = [
     {
@@ -11,30 +14,32 @@ const Home = () => {
       icon: "fa-bolt",
       price: 100,
       features: ["Appointments", "Medical Records", "Billing", "Telemedicine"],
+      link: "auth/register/basic",
     },
     {
       name: "Standard",
       icon: "fa-heart",
       price: 500,
       features: ["Appointments", "Medical Records", "Billing", "Telemedicine"],
+      link: "auth/register/standard",
     },
     {
       name: "Premium",
       icon: "fa-star",
       price: 1000,
       features: ["Appointments", "Medical Records", "Billing", "Telemedicine"],
+      link: "auth/register/premium",
     },
   ];
+
   const [searchText, setSearchText] = useState("");
-  const setSearch = () => {
-    console.log("Search button clicked");
+  const handleSearchDoctor = () => {
+    if (searchText.trim() !== "") {
+      navigate(`/doctors/search?q=${searchText.toLowerCase()}`);
+    }
   };
 
-  const handleInputChange = (event: {
-    target: { value: SetStateAction<string> };
-  }) => {
-    setSearchText(event.target.value);
-  };
+
   return (
     <>
       <Carasol />
@@ -66,19 +71,15 @@ const Home = () => {
                 type="text"
                 className="outline-none w-full py-2 px-4 h-full rounded-s-md"
                 value={searchText}
-                onChange={handleInputChange}
+                onChange={(e)=>setSearchText(e.target.value)}
               />
               <button
-                onClick={setSearch}
+                onClick={handleSearchDoctor}
                 className="bg-primary whitespace-nowrap w-[35%] sm:w-[40%] rounded-e-md h-full px-4 text-light"
               >
                 <i className="fa-solid fa-magnifying-glass"></i> Search
               </button>
             </div>
-            <h5 className={searchText ? "w-full" : "hidden"}>
-              Showing Result of :{" "}
-              <span className="text-primary">{searchText}</span>
-            </h5>
           </div>
         </div>
       </div>
@@ -117,7 +118,9 @@ const Home = () => {
                 </ul>
                 <div className="text-3xl font-bold mb-3">$1000</div>
                 <p className="text-gray-500 mb-6">Per month, per provider</p>
-                <Button>Choose Premium</Button>
+                <Button>
+                  <Link to={plan.link}>Choose Premium</Link>
+                </Button>
               </div>
             </div>
           ))}
