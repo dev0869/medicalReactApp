@@ -5,6 +5,9 @@ import {
   CarFront,
   BriefcaseMedical,
   Accessibility,
+  Users,
+  BookType,
+  Building2,
 } from "lucide-react";
 
 export const Routes = [
@@ -56,20 +59,31 @@ export const UserRoutes = [
 
 export const AdminRoutes = [
   {
+    title: "All Users",
+    path: "section?route=users&key=getAuth&url=auth",
+    icon: <Users />,
+  },
+  {
     title: "Patient",
-    path: "patient",
+    path: "section?route=patient&key=getPatients&url=patients",
     icon: <Accessibility />,
   },
   {
     title: "Doctor",
-    path: "doctorList",
+    path: "section?route=doctor&key=getDoctors&url=doctors",
     icon: <BriefcaseMedical />,
   },
   {
-    title: "Trips",
-    path: "trips",
-    icon: <CarFront />,
+    title: "Interpreter",
+    path: "section?route=interpreters&key=getInterpreter&url=interpreters",
+    icon: <BookType />,
   },
+  {
+    title: "Hospitals",
+    path: "section?route=hospital&key=getHospital&url=hospitals",
+    icon: <Building2 />,
+  },
+
   {
     title: "Profile",
     path: "profile",

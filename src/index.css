@@ -1,7 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 body {
   font-family: "Poppins", sans-serif;
   font-optical-sizing: auto;
@@ -80,4 +80,34 @@ h5,
 }
 .flex-start {
   @apply flex justify-start items-start;
+}
+
+.linearText {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-800 to-red-500;
+}
+.linerBg {
+  @apply bg-gradient-to-r from-purple-800 to-red-500;
+}
+footer .background {
+  background-image: url("/public/footerbg.svg");
+  background-size: cover;
+  padding-top: 40px;
+  color: #fff;
+}
+.para {
+  @apply text-[#262C67] font-bold max-w-[900px] pb-9 md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed dark:text-gray-400;
+}
+
+.wave {
+  background-size: cover;
+  padding: 40px 86px 80px 86px;
+  background-repeat: no-repeat;
+  background-image: url("/public/blue-wave.svg");
+}
+
+.redwave {
+  background-size: cover;
+  padding: 40px 86px 80px 86px;
+  background-repeat: no-repeat;
+  background-image: url("/public/red-wave.svg");
 }

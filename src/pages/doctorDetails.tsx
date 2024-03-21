@@ -2,7 +2,6 @@ import useAdminHooks from "@/hooks/useAdminHooks";
 import { useParams } from "react-router-dom";
 const DoctorDetails = () => {
   const { id } = useParams();
-
   const { data, isFetching } = useAdminHooks(
     `doctorid:${id}`,
     `/doctors/${id}`
@@ -24,13 +23,6 @@ const DoctorDetails = () => {
                   {data.fullname}
                 </h1>
                 <div className="flex items-center space-x-2 text-sm">
-                  <div className="flex items-center space-x-1">
-                    {/* <StarIcon className="w-4 h-4" />
-                    <StarIcon className="w-4 h-4" />
-                    <StarIcon className="w-4 h-4" />
-                    <StarIcon className="w-4 h-4" />
-                    <StarIcon className="w-4 h-4 fill-current opacity-30" /> */}
-                  </div>
                   <div className="text-gray-500 dark:text-gray-400">
                     4.0 average rating
                   </div>

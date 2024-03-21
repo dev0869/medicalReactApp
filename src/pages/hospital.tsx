@@ -12,14 +12,54 @@ const Hospital = () => {
   }
   return (
     <>
+      <div>
+        <div
+          className="px-8"
+          style={{
+            background:
+              "linear-gradient(204deg, #f9f2ff 0, #d2f4ff 29.5%, #fff 62.5%, #fff 86%, #c4e8ff 100%)",
+            borderTop: "1px solid #bdcdff",
+            borderBottom: "1px solid #bdcdff",
+          }}
+        >
+          <div className="container px-4 md:py-14 py-8 max-w-screen-lg2 m-auto flex flex-wrap gap-2 items-center">
+            <div className="mx-auto relative mb-4 md:mb-0">
+              <img
+                src="/hospitalsec.png"
+                alt=""
+                className="relative z-0 w-full"
+                style={{ maxHeight: "300px" }}
+              />
+            </div>
+            <div className="md:w-1/2 w-full mt-4">
+              <h2 className="text-xl leading-7 font-semibold mb-4">
+                Cashless Everywhere - Experience seamless hospitalization
+                anytime, anywhere!
+              </h2>
+              <p className="text-md">
+                Now, enjoy the convenience of cashless treatment at any hospital
+                of your choice, regardless of whether it is part of the
+                insurer’s network or not. Our customers can now access medical
+                care even at non-network hospitals.
+              </p>
+              <button className="transition delay-150 ease-in px-4 py-2 buttonPrimaryText border secondaryBorderColor rounded hover:text-white hover:primaryBgHover text-base inline-block cursor-pointer outline-none">
+                Read more
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <section className="w-full py-6 md:py-12">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col space-y-2 text-center">
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+              <h2 className="text-3xl linearText font-bold tracking-tighter sm:text-4xl">
                 Find a Hospital
               </h2>
-              <p> Enter your location to find the nearest hospitals.</p>
+              <p className="para mx-auto">
+                {" "}
+                Enter your location to find the nearest hospitals.
+              </p>
             </div>
             <div className="w-full border-2 md:w-[600px] mx-auto flex items-center justify-between rounded-md bg-light shadow-main ">
               <input

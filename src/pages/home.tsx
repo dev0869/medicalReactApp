@@ -1,10 +1,10 @@
-import Carasol from "@/components/ui/carasol";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { CheckIcon, StarIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Hero from "@/components/ui/hero";
 const Home = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -39,17 +39,27 @@ const Home = () => {
     }
   };
 
-
   return (
     <>
-      <Carasol />
-      <section className="container mx-auto mt-8 p-3">
+      <Hero />
+      <section className="container wave mx-auto mt-8 p-3">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="badge">Excelus MedAssits</div>
-          <h2 className="text-3xl font-bold tracking-tighter text-seconadry sm:text-4xl md:text-5xl/none">
+          <div data-aos="fade-zoom-in" data-aos-delay="300" className="badge">
+            Excelus MedAssits
+          </div>
+          <div
+            data-aos-duration="1000"
+            data-aos="fade-up"
+            className="text-3xl  linearText font-bold tracking-tighter text-seconadry sm:text-4xl md:text-5xl/none"
+          >
             {t("home.header")}
-          </h2>
-          <p className="max-w-[900px] pb-9 text-gray-500 md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed dark:text-gray-400">
+          </div>
+          <p
+            data-aos-duration="1000"
+            data-aos-delay="300"
+            data-aos="fade-up"
+            className="para"
+          >
             {t("home.para")}
           </p>
         </div>
@@ -71,7 +81,7 @@ const Home = () => {
                 type="text"
                 className="outline-none w-full py-2 px-4 h-full rounded-s-md"
                 value={searchText}
-                onChange={(e)=>setSearchText(e.target.value)}
+                onChange={(e) => setSearchText(e.target.value)}
               />
               <button
                 onClick={handleSearchDoctor}
@@ -83,19 +93,31 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="container mx-auto p-3 flex items-center justify-center flex-col">
-        <div className="w-full my-4">
-          <h1 className="font-bold text-center w-full text-primary text-4xl sm:text-5xl">
+      <div className="container  mx-auto p-3 flex items-center justify-center flex-col">
+        <div>
+          <h1
+            data-aos-duration="1000"
+            data-aos="fade-up"
+            className="font-bold linearText text-center w-full text-primary text-4xl sm:text-5xl"
+          >
             {t("plan.0.header")}
           </h1>
-          <p className="mx-auto text-center mt-4 max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
+          <p
+            data-aos-duration="1000"
+            data-aos-delay="300"
+            data-aos="fade-up"
+            className="mx-auto para text-center mt-4 max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400"
+          >
             {t("plan.0.para")}
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-6 w-full justify-between mb-4">
+        <div className="flex wave flex-wrap gap-6 w-full justify-between mb-4">
           {plans.map((plan, index) => (
             <div
+              data-aos-delay={index * 200}
+              data-aos-duration="1000"
+              data-aos="fade-up"
               key={index}
               className="flex flex-col rounded-xl cursor-pointer border overflow-hidden shadow transition-all duration-150 hover:shadow-xl p-3 w-full md:w-[47%] lg:w-[30%]"
             >

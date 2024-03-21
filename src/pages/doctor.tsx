@@ -1,13 +1,8 @@
 import DoctorCard, { DoctorDataProps } from "@/components/ui/doctorCard";
 import useAdminHooks from "@/hooks/useAdminHooks";
 import React, {
-  ReactElement,
-  JSXElementConstructor,
-  ReactNode,
-  ReactPortal,
   Key,
 } from "react";
-import { Link } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 const Doctor = () => {
   const [searchParams] = useSearchParams();

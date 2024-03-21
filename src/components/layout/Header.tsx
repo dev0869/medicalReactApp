@@ -28,7 +28,7 @@ const Header = () => {
     <>
       <div className="px-4 z-10 items-center sticky top-0 ' bg-white shadow-md w-full  flex justify-between ">
         <Link to={"/"}>
-          <img src="/logo.png" className="bac" width={100} alt="dsada" />
+          <img src="/logo.png" width={100} alt="logo" />
         </Link>
         <nav className=" flex gap-4 text-lg">
           {Routes.map((ele, id) => {
