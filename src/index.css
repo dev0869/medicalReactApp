@@ -89,7 +89,7 @@ h5,
   @apply bg-gradient-to-r from-purple-800 to-red-500;
 }
 footer .background {
-  background-image: url("/public/footerbg.svg");
+  background-image: url("/footerbg.svg");
   background-size: cover;
   padding-top: 40px;
   color: #fff;
@@ -102,12 +102,12 @@ footer .background {
   background-size: cover;
   padding: 40px 86px 80px 86px;
   background-repeat: no-repeat;
-  background-image: url("/public/blue-wave.svg");
+  background-image: url("/blue-wave.svg");
 }
 
 .redwave {
   background-size: cover;
   padding: 40px 86px 80px 86px;
   background-repeat: no-repeat;
-  background-image: url("/public/red-wave.svg");
+  background-image: url("/red-wave.svg");
 }

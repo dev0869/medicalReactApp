@@ -26,14 +26,26 @@ export function SearchMobileV1() {
 const Header = () => {
   return (
     <>
-      <div className="px-4 z-10 items-center sticky top-0 ' bg-white shadow-md w-full  flex justify-between ">
+      <div
+        data-aos="fade-down"
+        data-aos-delay="500"
+        data-aos-duration="1000"
+        className="px-4 z-10 items-center sticky top-0 ' bg-white shadow-md w-full  flex justify-between "
+      >
         <Link to={"/"}>
           <img src="/logo.png" width={100} alt="logo" />
         </Link>
         <nav className=" flex gap-4 text-lg">
           {Routes.map((ele, id) => {
             return (
-              <Link key={id} to={ele.path}>
+              <Link
+                className="font-[500] para mb-[-30px] text-md"
+                data-aos="fade-down"
+                data-aos-delay={id * 400}
+                data-aos-duration="1000"
+                key={id}
+                to={ele.path}
+              >
                 {ele.title}
               </Link>
             );

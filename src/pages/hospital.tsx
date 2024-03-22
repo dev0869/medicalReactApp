@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 const Hospital = () => {
   const [searchText, setSearchText] = useState("");
-  const { data, isFetching } = useAdminHooks("getHospital", "/hospitals");
+  const { data, isLoading } = useAdminHooks("getHospital", "/hospitals");
   const handleHospitalDoctor = () => {};
-  if (isFetching) {
+  if (isLoading) {
     return "loader";
   }
   return (

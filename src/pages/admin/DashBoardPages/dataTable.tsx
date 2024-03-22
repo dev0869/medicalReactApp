@@ -16,14 +16,14 @@ const DataTable = () => {
   const key = section.get("key");
   const url = section.get("url");
   const [columns, setColumns] = useState<ColDef[]>([]);
-  const { data, isFetching } = useAdminHooks(key, url || "");
+  const { data, isLoading } = useAdminHooks(key, url || "");
 
   useEffect(() => {
 
     setColumns(columnConfig[route] || []);
   }, [route]);
 
-  if (isFetching) {
+  if (isLoading) {
     return "loading";
   }
 

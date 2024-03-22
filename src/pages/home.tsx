@@ -93,7 +93,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="container  mx-auto p-3 flex items-center justify-center flex-col">
+      <div className="container  mx-auto mt-[100px] p-3 flex items-center justify-center flex-col">
         <div>
           <h1
             data-aos-duration="1000"

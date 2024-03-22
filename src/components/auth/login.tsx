@@ -1,5 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button } from "../ui/button";
+import { Check } from "lucide-react";
+
 import { LoginSchema, LoginSchemaType } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ApiRequest } from "@/apis";
@@ -23,22 +25,68 @@ const Login = () => {
       window.location.href = "/";
     }, 2000);
   };
-
   return (
-    <div className="container mx-auto p-3 flex-center md:py-8">
-      <div className="flex max-md:flex-wrap w-full max-w-4xl rounded-3xl p-2 shadow-xl border">
-        <div className="flex md:w-1/2 mx-auto flex-col items-center justify-center rounded-l-3xl md:p-12">
-          <img
-            src="https://webglobals.com.au/wp-content/uploads/2024/01/security-setting.jpg"
-            alt="login-icon"
-            className="h-20 w-40 object-contain"
-          />
-          <h1 className="text-2xl font-bold text-primary">Welcome home</h1>
-          <p className="mb-8 text-sm text-gray-500">
-            Please enter your details.
-          </p>
-          <form onSubmit={handleSubmit(onSubmit)} className="w-full">
+    <>
+      <div className=" gap-4 flex h-screen items-center justify-center">
+        <div className=" flex-[6] h-full linerBg ">
+          <div className="flex gap-2 justify-center rounded-lg p-4">
+            <div className="flex   box-border mt-10 ml-10  flex-col   items-end mb-6">
+              <img src="/p1.svg" className="mb-2 max-h-36 max-w-36" />
+              <img src="/p2.svg" />
+            </div>
+            <div className="flex box-border mt-0 mb-5  flex-col items-start ">
+              <img src="/p3.svg" className="mb-2 max-h-36 max-w-36" />
+              <img src="/p4.svg" style={{ maxHeight: "136px" }} />
+            </div>
+          </div>
+          <div className="text-2xl  ml-40 text-white text-center font-bold mr-32 break-words leading-normal">
+            India’s only AI-driven personalised
+            <br />
+            health platform, built to suit your needs!
+          </div>
+          <div className="flex flex-col ml-60   w-[50%] mx-auto rounded-lg ">
+            <div className="flex items-center text-indigo-100 font-pn-semibold mt-4">
+              <Check className="text-green-500 mr-2" />
+              <div>
+                <span>10,000+</span> service partners across India
+              </div>
+            </div>
+            <div className="flex items-center text-indigo-100 font-pn-semibold mt-4">
+              <Check className="text-green-500 mr-2" />
+
+              <div>
+                <span>4.5+</span> star user satisfaction rating
+              </div>
+            </div>
+            <div className="flex items-center text-indigo-100 font-pn-semibold mt-4">
+              <Check className="text-green-500 mr-2" />
+
+              <div>
+                <span>24x7</span> access to experienced doctors and therapists
+              </div>
+            </div>
+            <div className="flex items-center text-indigo-100 font-pn-semibold mt-4">
+              <Check className="text-green-500 mr-2" />
+
+              <div>
+                <span>22,000+</span> serviceable pincodes for e-pharmacy
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className=" flex-[3] flex-col p-4 items-center justify-center">
+          <form onSubmit={handleSubmit(onSubmit)} className="w-full ">
+            <img src="/logo.png" className="border-3 mx-auto" alt="logo " />
+            <div className="text-bannerBackground pt-4 text-[#262C7F] text-center text-2xl font-[800] mb-4">
+              LOGIN
+            </div>
+            <div className="text-lightBlue para text-center font-semibold text-sm ">
+              Explore personalised health benefits crafted just for you
+            </div>
             <div className="mb-4">
+              <label className="text-md font-semibold ml-1 text-[#262C7F]">
+                Enter UserName
+              </label>
               <input
                 {...register("username")}
                 className="form-input w-full"
@@ -51,6 +99,9 @@ const Login = () => {
             )}
 
             <div className="mb-4">
+              <label className="text-md font-semibold ml-1 text-[#262C7F]">
+                Enter Password
+              </label>
               <input
                 {...register("password")}
                 className="form-input w-full"
@@ -74,14 +125,8 @@ const Login = () => {
             </Button>
           </form>
         </div>
-        <div className="w-[500px] mx-auto flex-center">
-          <img
-            src="https://img.freepik.com/premium-vector/forgot-password-account-login-web-page-protection-security-key-access-system-smartphone-computer-flat-vector-illustration_2175-1401.jpg?w=740"
-            alt=""
-          />
-        </div>
       </div>
-    </div>
+    </>
   );
 };
 
