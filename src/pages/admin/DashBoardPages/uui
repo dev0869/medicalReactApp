@@ -26,3 +26,27 @@
 // };
 
 // export default DataTable;
+   {/* <div>
+            <label
+              htmlFor="email"
+              className="block  mb-2   text-sm font-medium text-gray-900 dark:text-gray-300"
+            >
+              Select User
+            </label>
+            <Select
+              onValueChange={(newValue) => {
+                console.log(newValue);
+              }}
+            >
+              <SelectTrigger className="w-[280px]">
+                <SelectValue placeholder="UserList" />
+              </SelectTrigger>
+              <SelectContent>
+                {(data as UserDataProps[]).map((ele, id) => (
+                  <SelectItem key={id} value={ele._id}>
+                    {ele.fullname}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div> */}

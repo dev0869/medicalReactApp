@@ -2,7 +2,6 @@ import useAuthVerifyHooks from "@/hooks/useAuthHooks";
 
 const MainProfile = () => {
   const { data } = useAuthVerifyHooks();
-  console.log(data);
   return (
     <>
       <section className=" relative bg-blueGray-50">

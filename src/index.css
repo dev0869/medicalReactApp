@@ -111,3 +111,44 @@ footer .background {
   background-repeat: no-repeat;
   background-image: url("/red-wave.svg");
 }
+
+.wave-section-card {
+  box-shadow: 0 0 25px rgba(24, 24, 24, 0.161);
+  border-radius: 25px;
+  background: url(https://www.medibuddy.in/assets/background/wave-section.svg)
+    bottom no-repeat #fff;
+  background-size: cover;
+  position: relative;
+}
+
+.line-with-circles {
+  position: relative;
+  width: 2px;
+  height: 30%;
+  margin: auto;
+}
+
+.circle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.circle:first-child {
+  top: -6px;
+}
+
+.circle:last-child {
+  bottom: -6px;
+}
+
+.line {
+  width: 100%;
+  height: 2px;
+  border: none;
+  background-color: red;
+}

@@ -1,3 +1,4 @@
+import { RoutesProps } from "@/types";
 import {
   SettingsIcon,
   ShoppingCartIcon,
@@ -9,6 +10,7 @@ import {
   BookType,
   Building2,
 } from "lucide-react";
+
 
 export const Routes = [
   {
@@ -57,7 +59,7 @@ export const UserRoutes = [
   },
 ];
 
-export const AdminRoutes = [
+export const AdminRoutes:RoutesProps[] = [
   {
     title: "All Users",
     path: "section?route=users&key=getAuth&url=auth",
@@ -70,18 +72,54 @@ export const AdminRoutes = [
   },
   {
     title: "Doctor",
-    path: "section?route=doctor&key=getDoctors&url=doctors",
+    path: "",
     icon: <BriefcaseMedical />,
+    children: [
+      {
+        title: "Get DoctorList",
+        path: "section?route=doctor&key=getDoctors&url=doctors",
+        icon: <BriefcaseMedical />,
+      },
+      {
+        title: "Add Doctor",
+        path: "section?route=doctor&key=getDoctors&url=doctors",
+        icon: <BriefcaseMedical />,
+      },
+    ],
   },
   {
     title: "Interpreter",
-    path: "section?route=interpreters&key=getInterpreter&url=interpreters",
+    path: "",
     icon: <BookType />,
+    children: [
+      {
+        title: "Get InterpreterList",
+        path: "section?route=interpreters&key=getInterpreter&url=interpreters",
+        icon: <BriefcaseMedical />,
+      },
+      {
+        title: "Add Interpreter",
+        path: "ADD",
+        icon: <BriefcaseMedical />,
+      },
+    ],
   },
   {
     title: "Hospitals",
-    path: "section?route=hospital&key=getHospital&url=hospitals",
+    path: "",
     icon: <Building2 />,
+    children: [
+      {
+        title: "Get HospitalList",
+        path: "section?route=hospital&key=getHospital&url=hospitals",
+        icon: <Building2 />,
+      },
+      {
+        title: "Add Hospital",
+        path: "section?route=doctor&key=getDoctors&url=doctors",
+        icon: <Building2 />,
+      },
+    ],
   },
 
   {

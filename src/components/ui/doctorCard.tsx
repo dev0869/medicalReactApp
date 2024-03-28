@@ -9,7 +9,7 @@ export interface DoctorDataProps {
 const DoctorCard = ({ data }: { data: DoctorDataProps }) => {
   return (
     <>
-      <div className=" w-[25%]  border-2 rounded-lg">
+      <div className=" w-[25%] wave-section-card   border-2 rounded-lg">
         <div className="p-3 lg:p-5 ">
           <div className="h-[50%]">
             <img

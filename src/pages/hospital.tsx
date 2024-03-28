@@ -10,9 +10,10 @@ const Hospital = () => {
   if (isLoading) {
     return "loader";
   }
+
   return (
     <>
-      <div>
+      <div data-aos-duration="1000" data-aos="fade-zoom-in">
         <div
           className="px-8"
           style={{
@@ -23,7 +24,11 @@ const Hospital = () => {
           }}
         >
           <div className="container px-4 md:py-14 py-8 max-w-screen-lg2 m-auto flex flex-wrap gap-2 items-center">
-            <div className="mx-auto relative mb-4 md:mb-0">
+            <div
+              data-aos="fade-right"
+              data-aos-duration="2000"
+              className="mx-auto  relative mb-4 md:mb-0"
+            >
               <img
                 src="/hospitalsec.png"
                 alt=""
@@ -32,17 +37,32 @@ const Hospital = () => {
               />
             </div>
             <div className="md:w-1/2 w-full mt-4">
-              <h2 className="text-xl leading-7 font-semibold mb-4">
+              <h2
+                data-aos="fade-left"
+                data-aos-delay="300"
+                data-aos-duration="2000"
+                className="text-xl leading-7 font-semibold mb-4"
+              >
                 Cashless Everywhere - Experience seamless hospitalization
                 anytime, anywhere!
               </h2>
-              <p className="text-md">
+              <p
+                data-aos="fade-left"
+                data-aos-delay="400"
+                data-aos-duration="2000"
+                className="text-md"
+              >
                 Now, enjoy the convenience of cashless treatment at any hospital
                 of your choice, regardless of whether it is part of the
                 insurer’s network or not. Our customers can now access medical
                 care even at non-network hospitals.
               </p>
-              <button className="transition delay-150 ease-in px-4 py-2 buttonPrimaryText border secondaryBorderColor rounded hover:text-white hover:primaryBgHover text-base inline-block cursor-pointer outline-none">
+              <button
+                data-aos="zoom-in"
+                data-aos-delay="800"
+                data-aos-duration="1000"
+                className="transition delay-150 ease-in px-4 py-2 buttonPrimaryText border secondaryBorderColor rounded hover:text-white hover:primaryBgHover text-base inline-block cursor-pointer outline-none"
+              >
                 Read more
               </button>
             </div>
@@ -53,10 +73,19 @@ const Hospital = () => {
         <div className="container px-4 md:px-6">
           <div className="flex flex-col space-y-2 text-center">
             <div className="space-y-2">
-              <h2 className="text-3xl linearText font-bold tracking-tighter sm:text-4xl">
+              <h2
+                data-aos-duration="1000"
+                data-aos="zoom-in"
+                className="text-3xl linearText font-bold tracking-tighter sm:text-4xl"
+              >
                 Find a Hospital
               </h2>
-              <p className="para mx-auto">
+              <p
+                data-aos-duration="1000"
+                data-aos-delay="300"
+                data-aos="fade-up"
+                className="para mx-auto"
+              >
                 {" "}
                 Enter your location to find the nearest hospitals.
               </p>

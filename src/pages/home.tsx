@@ -40,7 +40,7 @@ const Home = () => {
   };
 
   return (
-    <>
+    <div data-aos-duration="1000" data-aos="fade-zoom-in">
       <Hero />
       <section className="container wave mx-auto mt-8 p-3">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -64,7 +64,6 @@ const Home = () => {
           </p>
         </div>
       </section>
-
       <div className="search">
         <div className="container mx-auto h-full flex items-center">
           <div className="flex flex-wrap gap-2 p-3 md:px-20 my-20">
@@ -119,7 +118,7 @@ const Home = () => {
               data-aos-duration="1000"
               data-aos="fade-up"
               key={index}
-              className="flex flex-col rounded-xl cursor-pointer border overflow-hidden shadow transition-all duration-150 hover:shadow-xl p-3 w-full md:w-[47%] lg:w-[30%]"
+              className="flex wave-section-card flex-col rounded-xl cursor-pointer border overflow-hidden shadow transition-all duration-150 hover:shadow-xl p-3 w-full md:w-[47%] lg:w-[30%]"
             >
               <div className="flex flex-col items-center">
                 <StarIcon className="text-gray-500 mb-4 h-12 w-12" />
@@ -148,7 +147,80 @@ const Home = () => {
           ))}
         </div>
       </div>
-    </>
+      {/* new section begons */}
+      <div className="flex gap-4 items-center redwave  row">
+        <div className="col-md-5 p-l-0 bold">
+          <div className="clearfix m-20"></div>
+          <div data-aos-duration="1000" data-aos="fade-right" className="para">
+            <p className=" text-4xl font-bold linearText">
+              Excelus MedAsist Gold Edition
+            </p>
+            Unlimited Consultations with top Doctors for 6 family members in 22+
+            specialities and 16 languages
+          </div>
+          <Button
+            data-aos-delay={400}
+            data-aos-duration="1000"
+            data-aos="fade-right"
+            className="btn  text-white"
+          >
+            <span>Buy Premium Edition</span>
+          </Button>
+        </div>
+        <div className="flex">
+          <div
+            data-aos-duration="1000"
+            data-aos="fade-up"
+            className="pr-[25px]"
+          >
+            <div className="wave-section-card p-[25px] max-w-[235px] pull-right mb-2">
+              <img src="/assets/ul1.svg" alt="Unlimited consultations" />
+              <hr className="border-[5px] border-[#975cf5] w-[20%] my-2 rounded-[50px]" />
+              <div className="linearText text-sm font-bold">
+                Unlimited Free Consultations
+              </div>
+              <div className="text-[12px] font-bold text-violet-600">
+                Get unlimited free consultations with all{" "}
+                <strong>doctors 24x7</strong>
+              </div>
+            </div>
+            <div className="wave-section-card p-[25px] max-w-[235px]  pull-right mb-2">
+              <img src="/assets/ul2.svg" alt="Free for health problems" />
+              <hr className="border-[5px] border-[#975cf5] w-[20%] my-2 rounded-[50px]" />
+              <div className="linearText text-sm font-bold">
+                Free For All Health Problems
+              </div>
+              <div className="text-[12px] font-bold text-violet-600">
+                Consult with any doctor from <strong>18 departments</strong> at
+                any time
+              </div>
+            </div>
+          </div>
+          <div data-aos-delay="200" data-aos-duration="1000" data-aos="fade-up">
+            <div className="wave-section-card  p-[25px] max-w-[235px] mb-2">
+              <img src="/assets/ul3.svg" alt="Free for family members" />
+              <hr className="border-[5px] border-[#975cf5] w-[20%] my-2 rounded-[50px]" />
+              <div className="linearText text-sm font-bold">
+                Free For Full Family
+              </div>
+              <div className="text-[12px] font-bold text-violet-600">
+                Free consultations for upto <strong>6 family members</strong>
+              </div>
+            </div>
+            <div className="wave-section-card p-[25px] max-w-[235px] mb-2">
+              <img src="/assets/ul4.svg" alt="Video Consultations" />
+              <hr className="border-[5px] border-[#975cf5] w-[20%] my-2 rounded-[50px]" />
+              <div className="linearText text-sm font-bold">
+                Video Consultations
+              </div>
+              <div className="text-[12px] font-bold text-violet-600">
+                Video Consults with top doctors <strong>24x7</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
