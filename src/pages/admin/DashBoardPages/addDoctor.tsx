@@ -1,15 +1,13 @@
-
-
 import { Button } from "@/components/ui/button";
 import useAdminHooks from "@/hooks/useAdminHooks";
 import useFilterUserHooks from "@/hooks/useFilterUserHooks";
 import { UserDataProps } from "@/types";
+
 const AddDoctor = () => {
   const { data, isLoading } = useAdminHooks("getAuth", "auth" || "");
 
   const {
-    addLanguage,
-    delLanguage,
+    addOperation,
     lang,
     setInputValue,
     hidebar,
@@ -17,12 +15,23 @@ const AddDoctor = () => {
     searchUser,
     setSearchUser,
     active,
+    Operatable,
     searchUsers,
+    setSearchPatint,
+    patientactive,
+    plist,
+    setPatientactive,
+    searchPatient,
     setIsActive,
   } = useFilterUserHooks();
 
+  console.log(plist);
+
   const FilterUser = data?.filter((ele: { username: string | string[] }) =>
     ele.username.includes(searchUser.toLowerCase())
+  );
+  const FilterPatient = data?.filter((ele: { username: string | string[] }) =>
+    ele.username.includes(searchPatient.toLowerCase())
   );
   if (isLoading) {
     return "Loading";
@@ -45,7 +54,7 @@ const AddDoctor = () => {
               onBlur={hidebar}
               value={searchUser}
               onChange={(e) => {
-                searchUsers(e.target.value);
+                searchUsers("user", e.target.value);
               }}
               className="shadow-sm p-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block  mb-2  w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
               placeholder="Enter Charges"
@@ -96,26 +105,53 @@ const AddDoctor = () => {
               required
             />
             {inputValue.trim() !== "" && (
-              <Button type="button" onClick={() => addLanguage(inputValue)}>
+              <Button
+                type="button"
+                onClick={() => addOperation("user", inputValue)}
+              >
                 ADD LANGUAGE
               </Button>
             )}
-            <div className="mt-4 flex gap-4">
-              {lang.map((ele, id) => (
-                <div
-                  className="px-2 relative py-1 rounded-full linerBg"
-                  key={id}
-                >
-                  <span
-                    onClick={() => delLanguage(id)}
-                    className=" cursor-pointer text-white bg-red-500 px-2 py-[1px] translate-y-[-11px] translate-x-3  text-sm  rounded-full absolute top-0 right-0"
+            <Operatable  operation={plist} cases="user" />
+          </div>
+          <div>
+            <label
+              htmlFor="email"
+              className="block  mb-2   text-sm font-medium text-gray-900 dark:text-gray-300"
+            >
+              Search Patients
+            </label>
+            <input
+              onBlur={hidebar}
+              value={searchPatient}
+              onChange={(e) => {
+                searchUsers("patient", e.target.value);
+              }}
+              className="shadow-sm p-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block  mb-2  w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+              placeholder="Enter Charges"
+              required
+            />
+            {patientactive && (
+              <div
+                style={{ scrollbarWidth: "none" }}
+                className="shadow-md w-[20%] border-[1px]  rounded-lg   bg-white absolute h-[120px] overflow-y-auto  "
+              >
+                {(FilterPatient as UserDataProps[]).map((ele, id) => (
+                  <div
+                    onClick={() => {
+                      addOperation("patient", ele.username);
+                      setSearchPatint("");
+                      setPatientactive(false);
+                    }}
+                    className="p-2 m-1 transition-all rounded-lg   cursor-pointer px-4 py-2 hover:bg-gray-100 text-gray-800 text-sm font-bolder"
+                    key={id}
                   >
-                    x
-                  </span>
-                  {ele}
-                </div>
-              ))}
-            </div>
+                    {ele.username}
+                  </div>
+                ))}
+              </div>
+            )}
+            <Operatable  operation={plist} cases="patient" />
           </div>
         </div>
 
@@ -123,8 +159,6 @@ const AddDoctor = () => {
           <div className="circle"></div>
           <div className="circle"></div>
         </div>
-
-     
       </form>
     </>
   );
