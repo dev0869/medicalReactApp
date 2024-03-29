@@ -3,38 +3,46 @@ import { useState } from "react";
 const useFilterUserHooks = () => {
   const [lang, setLang] = useState<string[]>([]);
   const [plist, setPlist] = useState<string[]>([]);
-  console.log(plist, lang);
-  const [inputValue, setInputValue] = useState("");
-  const [searchUser, setSearchUser] = useState("");
-  const [searchPatient, setSearchPatint] = useState("");
 
-  const [active, setIsActive] = useState(false);
-  const [patientactive, setPatientactive] = useState(false);
+  
+  const [inputValue, setInputValue] = useState("");
+  const [searchUser, setSearchUser] = useState({});
+  const [searchPatient, setSearchPatient] = useState("");
+  const [active, setIsActive] = useState({
+    user: false,
+    patient: false,
+  });
+
 
   const searchUsers = (cases: string, newone: string) => {
     switch (cases) {
       case "user":
         setSearchUser(newone);
-        setIsActive(true);
+        setIsActive({ ...active, user: true });
         break;
       case "patient":
-        setSearchPatint(newone);
-        setPatientactive(true);
+        setSearchPatient(newone);
+        setIsActive({ ...active, patient: true });
         break;
       default:
         break;
     }
   };
 
-  const hidebar = () => {
-    if (searchUser.trim() === "") {
-      setIsActive(false);
-    }
-  };
-
-  const showBar = () => {
-    if (searchUser.trim() === "") {
-      setIsActive(false);
+  const hidebar = (cases: string) => {
+    switch (cases) {
+      case "user":
+        if ((searchUser as string).trim() === "") {
+          setIsActive({ ...active, user: false });
+        }
+        break;
+      case "patient":
+        if ((searchPatient as string).trim() === "") {
+          setIsActive({ ...active, patient: false });
+        }
+        break;
+      default:
+        break;
     }
   };
 
@@ -63,19 +71,19 @@ const useFilterUserHooks = () => {
   const addOperation = (cases: string, newone: string) => {
     switch (cases) {
       case "patient":
-        console.log(newone);
         setPlist((prev: string[]) => [...prev, newone]);
-        setPatientactive(true);
+        setIsActive({ ...active, patient: true });
         break;
       case "user":
         setLang((prev: string[]) => [...prev, newone]);
         setInputValue("");
         break;
       default:
-        console.log("errrrr");
+        console.log("Invalid case");
         break;
     }
   };
+
   const delLanguage = (cases: string, id: number) => {
     switch (cases) {
       case "user": {
@@ -107,13 +115,12 @@ const useFilterUserHooks = () => {
     searchUser,
     setSearchUser,
     hidebar,
-    showBar,
     searchPatient,
-    setSearchPatint,
+    setSearchPatient,
     Operatable,
     plist,
-    patientactive,
-    setPatientactive,
+    // patientActive,
+    // setPatientActive,
   };
 };
 

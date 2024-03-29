@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
+import HorizontalLine from "@/components/ui/horizontal-line";
 import useAdminHooks from "@/hooks/useAdminHooks";
 import useFilterUserHooks from "@/hooks/useFilterUserHooks";
 import { UserDataProps } from "@/types";
 
 const AddDoctor = () => {
   const { data, isLoading } = useAdminHooks("getAuth", "auth" || "");
-
   const {
     addOperation,
     lang,
@@ -17,32 +17,26 @@ const AddDoctor = () => {
     active,
     Operatable,
     searchUsers,
-    setSearchPatint,
-    patientactive,
+    setSearchPatient,
     plist,
-    setPatientactive,
     searchPatient,
     setIsActive,
   } = useFilterUserHooks();
 
-  console.log(plist);
+  const FilterOperation = (filterCase: string) => {
+    return data?.filter((ele: { username: string | string[] }) =>
+      ele.username.includes((filterCase as string).toLowerCase())
+    );
+  };
 
-  const FilterUser = data?.filter((ele: { username: string | string[] }) =>
-    ele.username.includes(searchUser.toLowerCase())
-  );
-  const FilterPatient = data?.filter((ele: { username: string | string[] }) =>
-    ele.username.includes(searchPatient.toLowerCase())
-  );
   if (isLoading) {
     return "Loading";
   }
+
   return (
     <>
       <form className="px-8 py-4 space-y-8">
-        <div
-          id="firstBlock  mb-2 "
-          className="w-[80%] flex flex-col rounded-xl shadow-md border-2 mx-auto p-8 justify-center"
-        >
+        <div className="w-[80%] flex flex-col rounded-xl shadow-md border-2 mx-auto p-8 justify-center">
           <div>
             <label
               htmlFor="email"
@@ -51,8 +45,8 @@ const AddDoctor = () => {
               Search User
             </label>
             <input
-              onBlur={hidebar}
-              value={searchUser}
+              onBlur={() => hidebar("user")}
+              value={(searchUser as string)}
               onChange={(e) => {
                 searchUsers("user", e.target.value);
               }}
@@ -60,23 +54,25 @@ const AddDoctor = () => {
               placeholder="Enter Charges"
               required
             />
-            {active === true && (
+            {active.user && (
               <div
                 style={{ scrollbarWidth: "none" }}
                 className="shadow-md w-[20%] border-[1px]  rounded-lg   bg-white absolute h-[120px] overflow-y-auto  "
               >
-                {(FilterUser as UserDataProps[]).map((ele, id) => (
-                  <div
-                    onClick={() => {
-                      setSearchUser(ele.username);
-                      setIsActive(false);
-                    }}
-                    className="p-2 m-1 transition-all rounded-lg   cursor-pointer px-4 py-2 hover:bg-gray-100 text-gray-800 text-sm font-bolder"
-                    key={id}
-                  >
-                    {ele.username}
-                  </div>
-                ))}
+                {(FilterOperation(searchUser) as UserDataProps[]).map(
+                  (ele, id) => (
+                    <div
+                      onClick={() => {
+                        setSearchUser(ele.username);
+                        setIsActive({...active,user:false});
+                      }}
+                      className="p-2 m-1 transition-all rounded-lg   cursor-pointer px-4 py-2 hover:bg-gray-100 text-gray-800 text-sm font-bolder"
+                      key={id}
+                    >
+                      {ele.username}
+                    </div>
+                  )
+                )}
               </div>
             )}
           </div>
@@ -112,7 +108,7 @@ const AddDoctor = () => {
                 ADD LANGUAGE
               </Button>
             )}
-            <Operatable  operation={plist} cases="user" />
+            <Operatable operation={lang} cases="user" />
           </div>
           <div>
             <label
@@ -122,7 +118,7 @@ const AddDoctor = () => {
               Search Patients
             </label>
             <input
-              onBlur={hidebar}
+              onBlur={() => hidebar("patient")}
               value={searchPatient}
               onChange={(e) => {
                 searchUsers("patient", e.target.value);
@@ -131,34 +127,33 @@ const AddDoctor = () => {
               placeholder="Enter Charges"
               required
             />
-            {patientactive && (
+            {active.patient && (
               <div
                 style={{ scrollbarWidth: "none" }}
                 className="shadow-md w-[20%] border-[1px]  rounded-lg   bg-white absolute h-[120px] overflow-y-auto  "
               >
-                {(FilterPatient as UserDataProps[]).map((ele, id) => (
-                  <div
-                    onClick={() => {
-                      addOperation("patient", ele.username);
-                      setSearchPatint("");
-                      setPatientactive(false);
-                    }}
-                    className="p-2 m-1 transition-all rounded-lg   cursor-pointer px-4 py-2 hover:bg-gray-100 text-gray-800 text-sm font-bolder"
-                    key={id}
-                  >
-                    {ele.username}
-                  </div>
-                ))}
+                {(FilterOperation(searchPatient) as UserDataProps[]).map(
+                  (ele, id) => (
+                    <div
+                      onClick={() => {
+                        addOperation("patient", ele.username);
+                        setSearchPatient("");
+                        setIsActive({...active,patient:false});
+                      }}
+                      className="p-2 m-1 transition-all rounded-lg   cursor-pointer px-4 py-2 hover:bg-gray-100 text-gray-800 text-sm font-bolder"
+                      key={id}
+                    >
+                      {ele.username}
+                    </div>
+                  )
+                )}
               </div>
             )}
-            <Operatable  operation={plist} cases="patient" />
+            <Operatable operation={plist} cases="patient" />
           </div>
         </div>
 
-        <div className="line-with-circles bg-red-500">
-          <div className="circle"></div>
-          <div className="circle"></div>
-        </div>
+        <HorizontalLine />
       </form>
     </>
   );
