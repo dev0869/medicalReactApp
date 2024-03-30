@@ -37,6 +37,10 @@ export const ApiRequest = async <T>(
     return response.data;
   } catch (error) {
     const myError = error as AxiosError<{ message: string }>;
+    if (myError.response?.data.message === "jwt expired") {
+      localStorage.removeItem("token");
+    }
+
     toast.error(myError.response?.data.message);
     throw new Error(error as string | undefined);
   }

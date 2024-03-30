@@ -19,7 +19,6 @@ const DataTable = () => {
   const { data, isLoading } = useAdminHooks(key, url || "");
 
   useEffect(() => {
-
     setColumns(columnConfig[route] || []);
   }, [route]);
 

@@ -1,10 +1,23 @@
 import { ApiRequest } from "@/apis";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-const useAdminHooks =(key:string|null|string[],Route:string) => {
+const useAdminHooks = (key: string | null | string[], Route: string) => {
   return useQuery({
-    queryKey: [key],queryFn:async()=>await ApiRequest("GET", Route),
+    queryKey: [key],
+    queryFn: async () => await ApiRequest("GET", Route),
   });
 };
+
+export const useAdminPostHooks = (Route) => {
+  const client = useQueryClient();
+  const mutation = useMutation({
+      mutationFn:async (data) => await ApiRequest("POST", Route, data)
+      // onSuccess: () => {
+      //     client.invalidateQueries(['cart'])
+      // }
+  })
+  return { mutation }
+}
+
 
 export default useAdminHooks;

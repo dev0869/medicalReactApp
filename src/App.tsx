@@ -16,7 +16,8 @@ import Admin from "./pages/admin/admin";
 import "./i18n";
 import Register from "./components/auth/register";
 const App = () => {
-  useAuthVerifyHooks();
+  const { error, data } = useAuthVerifyHooks();
+  console.log(error, data);
 
   return (
     <>

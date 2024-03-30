@@ -12,6 +12,7 @@ import useAuthVerifyHooks from "@/hooks/useAuthHooks";
 const DashLayout = ({ children }: { children: React.ReactNode }) => {
   const { data } = useAuthVerifyHooks();
   const role = data?.role;
+  console.log(role);
   let routesToRender: RoutesProps[];
   switch (role) {
     case "admin":

@@ -3,8 +3,7 @@ import { useState } from "react";
 const useFilterUserHooks = () => {
   const [lang, setLang] = useState<string[]>([]);
   const [plist, setPlist] = useState<string[]>([]);
-
-  
+  console.log(plist);
   const [inputValue, setInputValue] = useState("");
   const [searchUser, setSearchUser] = useState({});
   const [searchPatient, setSearchPatient] = useState("");
@@ -12,7 +11,6 @@ const useFilterUserHooks = () => {
     user: false,
     patient: false,
   });
-
 
   const searchUsers = (cases: string, newone: string) => {
     switch (cases) {
@@ -50,11 +48,11 @@ const useFilterUserHooks = () => {
     operation,
     cases,
   }: {
-    operation: string[];
+    operation: Array<string> | { name: string };
     cases: string;
   }) => (
     <div className="mt-4 flex gap-4">
-      {[...new Set(operation)].map((ele: string, id: number) => (
+      {[...new Set(operation)].map((ele, id: number) => (
         <div className="px-2 relative py-1 rounded-full linerBg" key={id}>
           <span
             onClick={() => delLanguage(cases, id)}
@@ -62,20 +60,24 @@ const useFilterUserHooks = () => {
           >
             x
           </span>
-          {ele}
+          {ele.name || ele}
         </div>
       ))}
     </div>
   );
 
-  const addOperation = (cases: string, newone: string) => {
+
+  const addOperation = (
+    cases: string,
+    newone: { name: string; id: string }
+  ) => {
     switch (cases) {
       case "patient":
-        setPlist((prev: string[]) => [...prev, newone]);
+        setPlist((prev) => [...prev, newone]);
         setIsActive({ ...active, patient: true });
         break;
       case "user":
-        setLang((prev: string[]) => [...prev, newone]);
+        setLang((prev) => [...prev, newone]);
         setInputValue("");
         break;
       default:
@@ -119,8 +121,6 @@ const useFilterUserHooks = () => {
     setSearchPatient,
     Operatable,
     plist,
-    // patientActive,
-    // setPatientActive,
   };
 };
 
