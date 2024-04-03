@@ -1,20 +1,22 @@
+import { Config } from "@/types";
 import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
 
-export const accessToken = localStorage.getItem("token");
-export const config = {
+export const accessToken: string | null = localStorage.getItem("token");
+
+export const config: Config = {
   headers: {
     Authorization: `Bearer ${accessToken}`,
   },
 };
 
-export const api = axios.create({ baseURL: "http://192.168.1.13:9001/api/" });
+export const api = axios.create({ baseURL: "http://192.168.1.22:9001/api/" });
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
 
 export const ApiRequest = async <T>(
   method: HttpMethod,
   url: string,
-  payload?: T
+  payload?: T,
 ) => {
   try {
     let response;
@@ -23,7 +25,7 @@ export const ApiRequest = async <T>(
         response = await api.get(url, config);
         break;
       case "POST":
-        response = await api.post(url, payload);
+        response = await api.post(url, payload, config);
         break;
       case "PUT":
         response = await api.put(url, payload);

@@ -1,5 +1,5 @@
 import { ApiRequest } from "@/apis";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 const useAdminHooks = (key: string | null | string[], Route: string) => {
   return useQuery({
@@ -8,16 +8,15 @@ const useAdminHooks = (key: string | null | string[], Route: string) => {
   });
 };
 
-export const useAdminPostHooks = (Route) => {
-  const client = useQueryClient();
+export const useAdminPostHooks = (Route: string) => { 
+  // const client = useQueryClient();
   const mutation = useMutation({
-      mutationFn:async (data) => await ApiRequest("POST", Route, data)
-      // onSuccess: () => {
-      //     client.invalidateQueries(['cart'])
-      // }
-  })
-  return { mutation }
-}
-
+    mutationFn: async (data) => await ApiRequest("POST", Route, data),
+    // onSuccess: () => {
+    //     client.invalidateQueries(['cart'])
+    // }
+  });
+  return { mutation };
+};
 
 export default useAdminHooks;

@@ -3,7 +3,9 @@ import MainProfile from "./DashBoardPages/mainProfile";
 import ProfileSetting from "./DashBoardPages/profileSetting";
 import DashLayout from "@/components/layout/DashLayout";
 import DataTable from "./DashBoardPages/dataTable";
-import AddDoctor from "./DashBoardPages/addDoctor";
+import AddHospital from "./DashBoardPages/addHospital";
+import AddInterpreter from "./DashBoardPages/addInterpreter";
+import AddDoctors from "./DashBoardPages/addDoctors";
 const Admin = () => {
   return (
     <DashLayout>
@@ -12,7 +14,10 @@ const Admin = () => {
         <Route path="setting" element={<ProfileSetting />}></Route>
         <Route path="profile" element={<MainProfile />}></Route>
         <Route path="section/*" element={<DataTable />}></Route>
-        <Route path="/ADD" element={<AddDoctor />}></Route>
+        <Route path="/add interpreter" element={<AddInterpreter />}></Route>
+        <Route path="/add hospital" element={<AddHospital />}></Route>
+        <Route path="/add doctor" element={<AddDoctors />}></Route>
+
       </Routes>
     </DashLayout>
   );

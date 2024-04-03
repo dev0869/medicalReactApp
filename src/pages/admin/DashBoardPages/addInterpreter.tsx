@@ -5,7 +5,7 @@ import useFilterUserHooks from "@/hooks/useFilterUserHooks";
 import { UserDataProps } from "@/types";
 import { useState } from "react";
 
-const AddDoctor = () => {
+const AddInterpreter = () => {
   const { data, isLoading } = useAdminHooks("getAuth", "auth" || "");
   const [charges, setCharges] = useState("");
   const { mutation } = useAdminPostHooks("/interpreters");
@@ -178,4 +178,4 @@ const AddDoctor = () => {
   );
 };
 
-export default AddDoctor;
+export default AddInterpreter;

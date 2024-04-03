@@ -25,7 +25,7 @@ const DashLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="flex   relative w-full  lg:grid-cols-[280px_1fr]">
-      <div className="border-r  rounded-lg sticky top-0 h-screen bg-gray-100/40 lg:block dark:bg-gray-800/40">
+      <div className="border-r flex-[2]  rounded-lg sticky top-0 h-screen bg-gray-100/40 lg:block dark:bg-gray-800/40">
         <div className="flex h-full max-h-screen flex-col gap-2">
           <div className="flex items-center border-b px-6">
             <Link to={"/"} className="flex items-center gap-2 font-semibold">
@@ -77,8 +77,8 @@ const DashLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col flex-1 overflow-auto">
-        <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
+      <div className="flex flex-[8] flex-col overflow-auto">
+        <main className="flex  flex-col gap-4 p-4 md:gap-8 md:p-6">
           {children}
         </main>
       </div>

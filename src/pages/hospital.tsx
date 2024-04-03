@@ -106,7 +106,7 @@ const Hospital = () => {
               </button>
             </div>
           </div>
-          <div className="mx-auto flex my-9  justify-center gap-9">
+          <div className="mx-auto flex my-9 flex-wrap  justify-center gap-9">
             {data.map(
               (
                 ele: {

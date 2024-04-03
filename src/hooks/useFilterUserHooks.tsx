@@ -3,9 +3,8 @@ import { useState } from "react";
 const useFilterUserHooks = () => {
   const [lang, setLang] = useState<string[]>([]);
   const [plist, setPlist] = useState<string[]>([]);
-  console.log(plist);
   const [inputValue, setInputValue] = useState("");
-  const [searchUser, setSearchUser] = useState({});
+  const [searchUser, setSearchUser] = useState<{id?:string,name?:string}>({});
   const [searchPatient, setSearchPatient] = useState("");
   const [active, setIsActive] = useState({
     user: false,

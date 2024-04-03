@@ -69,7 +69,7 @@ export const AdminRoutes:RoutesProps[] = [
     title: "Patient",
     path: "section?route=patient&key=getPatients&url=patients",
     icon: <Accessibility />,
-  },
+  },  
   {
     title: "Doctor",
     path: "",
@@ -82,7 +82,7 @@ export const AdminRoutes:RoutesProps[] = [
       },
       {
         title: "Add Doctor",
-        path: "section?route=doctor&key=getDoctors&url=doctors",
+        path: "add doctor",
         icon: <BriefcaseMedical />,
       },
     ],
@@ -99,7 +99,7 @@ export const AdminRoutes:RoutesProps[] = [
       },
       {
         title: "Add Interpreter",
-        path: "ADD",
+        path: "add interpreter",
         icon: <BriefcaseMedical />,
       },
     ],
@@ -116,7 +116,7 @@ export const AdminRoutes:RoutesProps[] = [
       },
       {
         title: "Add Hospital",
-        path: "section?route=doctor&key=getDoctors&url=doctors",
+        path: "add hospital",
         icon: <Building2 />,
       },
     ],
