@@ -1,12 +1,14 @@
+import { Headset } from 'lucide-react';
 
 const Contact = () => {
   return (
-    <div className="md:flex mt-8">
-      <form action="#" className="px-8 py-4 space-y-8">
+    <div className="md:flex m-8">
+      <form action="#" className="px-8 flex-[4] border rounded-lg shadow-sm py-4 space-y-4">
+        <p className="text-xl font-bold flex items-center gap-2"><Headset strokeWidth={2.5}/>Contact Us</p>
         <div>
           <label
             htmlFor="email"
-            className="block  text-sm font-medium text-gray-900 dark:text-gray-300"
+            className="block  text-md my-1 font-medium text-gray-900 dark:text-gray-300"
           >
             Your email
           </label>
@@ -21,7 +23,7 @@ const Contact = () => {
         <div>
           <label
             htmlFor="subject"
-            className="block  text-sm font-medium text-gray-900 dark:text-gray-300"
+            className="block  text-md my-1 font-medium text-gray-900 dark:text-gray-300"
           >
             Subject
           </label>
@@ -33,27 +35,28 @@ const Contact = () => {
             required
           />
         </div>
-        <div className="sm:col-span-2">
+        <div>
           <label
             htmlFor="message"
-            className="block  text-sm font-medium text-gray-900 dark:text-gray-400"
+            className="block my-1 text-md font-medium text-gray-900 dark:text-gray-400"
           >
             Your message
           </label>
-          <input
+          <textarea
             id="message"
+            rows={8}
             className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
             placeholder="Leave a comment..."
           />
         </div>
         <button
           type="submit"
-          className="py-3 px-5 text-sm f ont-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+          className="py-3 px-5 text-sm bg-[#1E40AF] font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
         >
           Send message
         </button>
       </form>
-      <div className="md:w-2/3 md:ml-16">
+      <div className="md:w-2/3 flex-[8] md:ml-16">
         <h3 className="text-lg sm:text-xl  mb-6 font-semibold">
           Corporate office/Registered office
         </h3>

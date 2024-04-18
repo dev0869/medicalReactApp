@@ -4,44 +4,10 @@ const useFilterUserHooks = () => {
   const [lang, setLang] = useState<string[]>([]);
   const [plist, setPlist] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState("");
-  const [searchUser, setSearchUser] = useState<{id?:string,name?:string}>({});
-  const [searchPatient, setSearchPatient] = useState("");
   const [active, setIsActive] = useState({
     user: false,
     patient: false,
   });
-
-  const searchUsers = (cases: string, newone: string) => {
-    switch (cases) {
-      case "user":
-        setSearchUser(newone);
-        setIsActive({ ...active, user: true });
-        break;
-      case "patient":
-        setSearchPatient(newone);
-        setIsActive({ ...active, patient: true });
-        break;
-      default:
-        break;
-    }
-  };
-
-  const hidebar = (cases: string) => {
-    switch (cases) {
-      case "user":
-        if ((searchUser as string).trim() === "") {
-          setIsActive({ ...active, user: false });
-        }
-        break;
-      case "patient":
-        if ((searchPatient as string).trim() === "") {
-          setIsActive({ ...active, patient: false });
-        }
-        break;
-      default:
-        break;
-    }
-  };
 
   const Operatable = ({
     operation,
@@ -65,16 +31,11 @@ const useFilterUserHooks = () => {
     </div>
   );
 
-
   const addOperation = (
     cases: string,
     newone: { name: string; id: string }
   ) => {
     switch (cases) {
-      case "patient":
-        setPlist((prev) => [...prev, newone]);
-        setIsActive({ ...active, patient: true });
-        break;
       case "user":
         setLang((prev) => [...prev, newone]);
         setInputValue("");
@@ -93,12 +54,7 @@ const useFilterUserHooks = () => {
         setLang(copyLang);
         break;
       }
-      case "patient": {
-        const copyPlist = [...plist];
-        copyPlist.splice(id, 1);
-        setPlist(copyPlist);
-        break;
-      }
+
       default:
         break;
     }
@@ -107,17 +63,13 @@ const useFilterUserHooks = () => {
   return {
     addOperation,
     delLanguage,
-    searchUsers,
+
     lang,
     inputValue,
     setInputValue,
     active,
     setIsActive,
-    searchUser,
-    setSearchUser,
-    hidebar,
-    searchPatient,
-    setSearchPatient,
+
     Operatable,
     plist,
   };

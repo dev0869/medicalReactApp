@@ -1,126 +1,206 @@
+import { Button } from "@/components/ui/button";
+import useAdminHooks from "@/hooks/useAdminHooks";
+import {
+  MDBCardText,
+  MDBCardBody,
+  MDBProgress,
+  MDBProgressBar,
+  MDBIcon,
+  MDBListGroup,
+  MDBListGroupItem,
+} from "mdb-react-ui-kit";
 const ProfileSetting = () => {
-
-
-
-
+  const { data } = useAdminHooks("auth", "auth/me" || "");
+  console.log(data);
   return (
     <>
+      <section>
+        <div className="py-5 px-4 gap-8   flex">
+          <div className="flex-[2]">
+            <div className="flex flex-col">
+              <div className="text-center rounded-lg flex item-center shadow-sm border-[1px] flex-col ">
+                <div className="w-full h-[200px] flex justify-center rounded-full">
+                  <img
+                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                    alt="avatar"
+                    className="w-full h-full object-contain"
+                    style={{ width: "150px" }}
+                  />
+                </div>
+                <p className="text-muted mb-1">{data?.username}</p>
+                <p className="text-muted mb-4">patient</p>
+              </div>
 
-    profile setting
-      {/* <section className=" bg-blueGray-50">
-        <div className="w-full  px-0 md:px-4 mx-auto mt-6">
-          <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-            <div className="rounded-t bg-white mb-0 px-6 py-6">
-              <div className="text-center flex justify-between">
-                <h6 className="text-blueGray-700 text-xl font-bold">Profile</h6>
+              <div className=" rounded-lg flex item-center  shadow-sm border-[1px] flex-col my-4 ">
+                <MDBCardBody className="p-0">
+                  <MDBListGroup flush className="rounded-3">
+                    <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                      <MDBIcon fas icon="globe fa-lg text-warning" />
+                      <MDBCardText>https://mdbootstrap.com</MDBCardText>
+                    </MDBListGroupItem>
+                    <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                      <MDBIcon
+                        fab
+                        icon="github fa-lg"
+                        style={{ color: "#333333" }}
+                      />
+                      <MDBCardText>mdbootstrap</MDBCardText>
+                    </MDBListGroupItem>
+                    <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                      <MDBIcon
+                        fab
+                        icon="twitter fa-lg"
+                        style={{ color: "#55acee" }}
+                      />
+                      <MDBCardText>@mdbootstrap</MDBCardText>
+                    </MDBListGroupItem>
+                    <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                      <MDBIcon
+                        fab
+                        icon="instagram fa-lg"
+                        style={{ color: "#ac2bac" }}
+                      />
+                      <MDBCardText>mdbootstrap</MDBCardText>
+                    </MDBListGroupItem>
+                    <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                      <MDBIcon
+                        fab
+                        icon="facebook fa-lg"
+                        style={{ color: "#3b5998" }}
+                      />
+                      <MDBCardText>mdbootstrap</MDBCardText>
+                    </MDBListGroupItem>
+                  </MDBListGroup>
+                </MDBCardBody>
               </div>
             </div>
-            <hr className="mx-6 border-b-1 border-blueGray-300" />
-            <div className="flex-auto mt-3 px-4 lg:px-10 py-10 pt-0">
-              <form onSubmit={formik.handleSubmit}>
-                <div className="flex flex-wrap">
-                  <div className="w-full lg:w-6/12 px-4">
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        Full Name
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        onChange={formik.handleChange}
-                        value={formik.values.name}
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow w-full ease-linear transition-all duration-150"
-                        placeholder="Enter Name"
-                      />
-                    </div>
-                  </div>
-                  <div className="w-full lg:w-6/12 px-4">
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        onChange={formik.handleChange}
-                        value={formik.values.email}
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow w-full ease-linear transition-all duration-150"
-                        placeholder="Enter Email "
-                      />
-                    </div>
-                  </div>
-                  <div className="w-full lg:w-6/12 px-4">
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        Mobile Number
-                      </label>
-                      <input
-                        name="number"
-                        onChange={formik.handleChange}
-                        value={formik.values.number}
-                        type="number"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow w-full ease-linear transition-all duration-150"
-                        placeholder="Enter Mobile Number "
-                      />
-                    </div>
-                
-                  </div>
-                  <div className="w-full lg:w-6/12 px-4">
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        GST Number
-                      </label>
-                      <input
+          </div>
+          <div className="flex-[6]">
+            <div className="rounded-lg flex item-center  shadow-sm border-[1px] flex-col">
+              <div className="flex items-center px-4  gap-9 py-4">
+                <p className="text-md font-[600] text-gray-700">Full Name :</p>
+                <p className="text-md  font-[600] text-gray-700">
+                  {data?.fullname}
+                </p>
+              </div>
+              <hr />
+              <div className="flex items-center px-4  gap-9 py-4">
+                <p className="text-md font-[600] text-gray-700">
+                  Mobile Number:
+                </p>
+                <p className="text-md font-[600] text-gray-700">
+                  {data?.mobile}
+                </p>
+              </div>
+              <hr />
+              <div className="flex items-center px-4  gap-9 py-4">
+                <p className="text-md font-[600] text-gray-700">Email Id:</p>
+                <p className="text-md font-[600] text-gray-700">
+                  {data?.email}
+                </p>
+              </div>
+              <hr />
+            </div>
 
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow  w-full ease-linear transition-all duration-150"
-                        placeholder="Enter GST Number"
-                        type="text"
-                        name="gstNo"
-                        onChange={formik.handleChange}
-                        value={formik.values.gstNo}
-                      />
+            <div className="rounded-lg gap-6 px-6  flex item-center  shadow-sm border-[1px] flex-row my-4 ">
+              <div className="rounded-lg flex item-center flex-[4]  shadow-sm border-[1px] flex-col my-4 ">
+                <div className="mb-4 p-4 mb-md-0">
+                  <MDBCardBody>
+                    <MDBCardText className="mb-4">
+                      <span className="text-primary font-italic me-1">
+                        assigment
+                      </span>{" "}
+                      Project Status
+                    </MDBCardText>
+                    <MDBCardText
+                      className="mb-1"
+                      style={{ fontSize: ".77rem" }}
+                    >
+                      Web Design
+                    </MDBCardText>
+                    <MDBProgress className="rounded">
+                      <MDBProgressBar width={80} valuemin={0} valuemax={100} />
+                    </MDBProgress>
+
+                    <MDBCardText
+                      className="mt-4 mb-1"
+                      style={{ fontSize: ".77rem" }}
+                    >
+                      Website Markup
+                    </MDBCardText>
+                    <MDBProgress className="rounded">
+                      <MDBProgressBar width={72} valuemin={0} valuemax={100} />
+                    </MDBProgress>
+
+                    <MDBCardText
+                      className="mt-4 mb-1"
+                      style={{ fontSize: ".77rem" }}
+                    >
+                      One Page
+                    </MDBCardText>
+                    <MDBProgress className="rounded">
+                      <MDBProgressBar width={89} valuemin={0} valuemax={100} />
+                    </MDBProgress>
+
+                    <MDBProgress className="rounded">
+                      <MDBProgressBar width={55} valuemin={0} valuemax={100} />
+                    </MDBProgress>
+
+                    <MDBCardText
+                      className="mt-4 mb-1"
+                      style={{ fontSize: ".77rem" }}
+                    >
+                      Backend API
+                    </MDBCardText>
+                    <MDBProgress className="rounded">
+                      <MDBProgressBar width={66} valuemin={0} valuemax={100} />
+                    </MDBProgress>
+                  </MDBCardBody>
+                </div>
+              </div>
+
+              <div className="rounded-lg flex item-center flex-[4]  shadow-sm border-[1px] flex-col my-4 ">
+                <div className="py-4 px-4">
+                  <div className="flex flex-row items-center justify-between pb-2 space-y-0">
+                    <div className="flex flex-col space-y-0.5">
+                      <div className="text-base font-semibold">
+                        Dr. John Doe
+                      </div>
+                      <div className="text-xs">Referred by Dr. Smith</div>
+                    </div>
+                    <div className="w-6 h-6 text-gray-500 dark:text-gray-400" />
+                  </div>
+                  <div className="grid gap-3 text-sm">
+                    <div className="flex items-center gap-3">
+                      {/* <UserIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" /> */}
+                      <div>
+                        <div>Name</div>
+                        <div className="text-sm font-medium">Alice Johnson</div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      {/* <ClipboardIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" /> */}
+                      <div>
+                        <div>Illness</div>
+                        <div className="text-sm font-medium">
+                          Hypertension, Type 2 Diabetes
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="w-full lg:w-6/12 px-4">
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        PAN Number
-                      </label>
-                      <input
-
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow  w-full ease-linear transition-all duration-150"
-                        type="text"
-                        name="panNo"
-                        placeholder="Enter PAN Number"
-                        onChange={formik.handleChange}
-                        value={formik.values.panNo}
-                      />
-                    </div>
+                  <div className="flex items-center justify-between space-y-0.5">
+                    <Button>View Report</Button>
+                    <Button size="sm" variant="outline">
+                      Contact
+                    </Button>
                   </div>
                 </div>
-                <div type='submit' className="w-[20%] mx-auto pt-3 ">
-                  <Buttonele title={"Save"} />
-                </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
+      ;
     </>
   );
 };

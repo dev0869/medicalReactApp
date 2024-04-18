@@ -1,16 +1,16 @@
 import { RoutesProps } from "@/types";
 import {
   SettingsIcon,
-  ShoppingCartIcon,
   CircleUser,
-  CarFront,
+  ClipboardPlus ,
   BriefcaseMedical,
   Accessibility,
   Users,
   BookType,
   Building2,
+  Plane ,
+  Home,
 } from "lucide-react";
-
 
 export const Routes = [
   {
@@ -31,25 +31,25 @@ export const Routes = [
   },
 ];
 
-export const UserRoutes = [
+export const AdminRoutes = [
   {
-    title: "Shopping",
-    path: "shopping",
-    icon: <ShoppingCartIcon />,
-  },
-  {
-    title: "Shopping",
-    path: "shopping",
-    icon: <ShoppingCartIcon />,
+    title: "Home",
+    path: "PersonalDetails",
+    icon: <Home />,
   },
   {
     title: "Trips",
     path: "trips",
-    icon: <CarFront />,
+    icon: <Plane />,
   },
   {
-    title: "Profile",
-    path: "profile",
+    title: "Reports",
+    path: "reports",
+    icon: <ClipboardPlus  />,
+  },
+  {
+    title: "Appointments",
+    path: "appointments",
     icon: <CircleUser />,
   },
   {
@@ -59,7 +59,7 @@ export const UserRoutes = [
   },
 ];
 
-export const AdminRoutes:RoutesProps[] = [
+export const UserRoutes: RoutesProps[] = [
   {
     title: "All Users",
     path: "section?route=users&key=getAuth&url=auth",
@@ -69,7 +69,7 @@ export const AdminRoutes:RoutesProps[] = [
     title: "Patient",
     path: "section?route=patient&key=getPatients&url=patients",
     icon: <Accessibility />,
-  },  
+  },
   {
     title: "Doctor",
     path: "",

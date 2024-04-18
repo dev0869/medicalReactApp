@@ -86,7 +86,6 @@ const Hospital = () => {
                 data-aos="fade-up"
                 className="para mx-auto"
               >
-                {" "}
                 Enter your location to find the nearest hospitals.
               </p>
             </div>
@@ -163,8 +162,8 @@ const Hospital = () => {
                 id: string
               ) => {
                 return (
-                  <React.Fragment key={id}>
-                    <div className="flex flex-col gap-1">
+                  <div className="flex border p-4 rounded-lg shadow-sm" key={id}>
+                    <div className="flex  flex-col gap-1">
                       <div className="text-sm bg-green-100 p-1 rounded-lg w-fit  text-gray-500 dark:text-gray-400">
                         {ele.specialization}
                       </div>
@@ -185,7 +184,7 @@ const Hospital = () => {
                     >
                       <Link to={`/hospitals/${ele._id}`}>Get Details</Link>
                     </Button>
-                  </React.Fragment>
+                  </div>
                 );
               }
             )}

@@ -25,7 +25,7 @@ const DataTable = () => {
   if (isLoading) {
     return "loading";
   }
-
+  
   return (
     <div className="ag-theme-quartz" style={{ height: 500 }}>
       <AgGridReact

@@ -1,12 +1,19 @@
 import { SetStateAction, useState } from "react";
+import useUploadHooks from "./useUploadHooks";
 
 const useAddDoctorHooks = () => {
-  const [selectedImages, setSelectedImages] = useState<SetStateAction<string[]>>([]);
+  const { mutateAsync } = useUploadHooks();
+  const [selectedImages, setSelectedImages] = useState<
+    SetStateAction<string[]>
+  >([]);
   console.log(selectedImages);
   const [selectedVideos, setSelectedVideos] = useState([]);
-  const handleImageChange = (event: { target: { files: string } }) => {
-    const files = event.target.files;
+  const handleImageChange = async (event: { target: { files: string } }) => {
+    const files = event.target.files[0];
+    console.log(files);
     setSelectedImages([...selectedImages, ...files]);
+    const res = await mutateAsync([files]);
+    console.log(res);
   };
   const handleVideoChange = (event: { target: { files: string } }) => {
     const files = event.target.files;

@@ -1,16 +1,28 @@
 import HorizontalLine from "@/components/ui/horizontal-line";
-import { accessToken } from "@/apis";
 import useAddDoctorHooks from "@/hooks/useAddDoctorHooks";
 import useAdminHooks, { useAdminPostHooks } from "@/hooks/useAdminHooks";
 import useFilterUserHooks from "@/hooks/useFilterUserHooks";
-import { Facilityprops, HospitalProps } from "@/types";
+import { DoctorProps, Facilityprops, HospitalProps } from "@/types";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import ErrorMsg from "@/helper/errorMsg";
 import SelectOperation from "@/helper/SelectOperation";
 import { toast } from "react-toastify";
+import { Button } from "@/components/ui/button";
 const AddDoctors = () => {
-  const filterUserProps = useFilterUserHooks();
+  const { addOperation, lang, setInputValue, inputValue, Operatable } =
+    useFilterUserHooks();
+  const { data: hospital } = useAdminHooks("getHospital", "hospitals" || "");
+  console.log(hospital);
+  const [selectedValue, setSelectedValue] = useState<{
+    value: string;
+    label: string;
+  }>();
+  const [selectedHospitalValue, setSelectedHospitalValue] = useState<{
+    value: string;
+    label: string;
+  }>();
+
   const {
     removeVideo,
     removeImage,
@@ -19,14 +31,16 @@ const AddDoctors = () => {
     selectedVideos,
     selectedImages,
   } = useAddDoctorHooks();
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm<HospitalProps>();
-  const { isLoading } = useAdminHooks("getAuth", "auth" || "");
+  } = useForm<DoctorProps>();
+  const { isLoading, data: user } = useAdminHooks("getAuth", "auth" || "");
 
-  const { mutation } = useAdminPostHooks("/hospitals", accessToken);
+  const { mutation } = useAdminPostHooks("/doctors");
 
   const [facilities, setFacilities] = useState<Facilityprops[]>([]);
   const [facility, setFacility] = useState<Facilityprops>({
@@ -42,21 +56,19 @@ const AddDoctors = () => {
     }
   };
 
-  const onSubmit: SubmitHandler<HospitalProps> = async (data) => {
+  const onSubmit: SubmitHandler<DoctorProps> = async (data) => {
     const SubmittingData = {
       ...data,
-      userId: filterUserProps.searchUser.id,
-      facilities: facilities,
+      userId: selectedValue?.value,
+      hospitalId: selectedHospitalValue?.value,
     };
 
-    mutation.mutate({SubmittingData});
-    if (mutation.isError) {
-      toast.error("Opps! Something Went Wrong!");
-      console.log("errorrrr");
-    }
-    if (mutation.isSuccess) {
-      toast.success("Data successFully Submitted");
-    }
+    await mutation.mutateAsync(SubmittingData);
+
+    toast.success("Data successFully Submitted");
+    reset();
+    setSelectedHospitalValue();
+    setSelectedValue("");
   };
 
   if (isLoading) {
@@ -70,56 +82,67 @@ const AddDoctors = () => {
           <main>Basic Details</main>
           <hr className="py-2 my-4" />
           <div className="flex gap-4 justify-between">
-            <SelectOperation {...filterUserProps} />
+            <SelectOperation
+              name={"User"}
+              data={user}
+              setSelectedValue={setSelectedValue}
+            />
             <div className="w-full">
               <label className="block  mb-2   text-sm font-medium text-gray-900 dark:text-gray-300">
-                Hospital Name
+                Experites
               </label>
               <input
                 className="shadow-sm p-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block  mb-2  w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                 placeholder="Enter Hospital Name"
-                {...register("hospitalName", { required: true })}
+                {...register("expertise", { required: true })}
               />
-              {errors.hospitalName && <ErrorMsg />}
+              {errors.expertise && <ErrorMsg />}
             </div>
           </div>
           <div className="flex gap-4 justify-between">
             <div className="w-full">
               <label className="block  my-2   text-sm font-medium text-gray-900 dark:text-gray-300">
-                hospitalEmail
+                Enter Charges
               </label>
               <input
                 type="email"
-                {...register("hospitalEmail")}
+                {...register("charges")}
                 className="block  mb-2  p-2 w-full text-sm text-gray-900  rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                 placeholder="Enter Email"
               />
             </div>
             <div className="w-full">
-              <label
-                htmlFor="email"
-                className="block  mb-2   text-sm font-medium text-gray-900 dark:text-gray-300"
-              >
-                Contact Number
-              </label>
-              <input
-                type="number"
-                {...register("hospitalContactNumber", { min: 10 })}
-                className="shadow-sm p-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block  mb-2  w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
-                placeholder="Enter Mobile Number"
+              <SelectOperation
+                name={"Hospital"}
+                data={hospital}
+                setSelectedValue={setSelectedHospitalValue}
               />
+
               {errors.hospitalContactNumber && <ErrorMsg />}
             </div>
           </div>
           <div>
-            <label className="block  mb-2   text-sm font-medium text-gray-900 dark:text-gray-300">
-              Hospital Address
-            </label>
-            <input
-              {...register("address")}
-              className="shadow-sm p-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block  mb-2  w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
-              placeholder="Enter Address"
-            />
+            <div>
+              <label className="block  my-2   text-sm font-medium text-gray-900 dark:text-gray-300">
+                Enter Languages
+              </label>
+              <input
+                type="text"
+                onChange={(e) => setInputValue(e.target.value)}
+                value={inputValue}
+                className="block  mb-2  p-2 w-full text-sm text-gray-900  rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                placeholder="Enter Languages"
+              />
+              {inputValue.trim() !== "" && (
+                <Button
+                  type="button"
+                  onClick={() => addOperation("user", inputValue)}
+                >
+                  ADD LANGUAGE
+                </Button>
+              )}
+              <Operatable operation={lang} cases="user" />
+            </div>
           </div>
           <div className="flex gap-4 justify-between">
             <div className="w-full">

@@ -8,13 +8,9 @@ const useAdminHooks = (key: string | null | string[], Route: string) => {
   });
 };
 
-export const useAdminPostHooks = (Route: string) => { 
-  // const client = useQueryClient();
+export const useAdminPostHooks = (Route: string) => {
   const mutation = useMutation({
-    mutationFn: async (data) => await ApiRequest("POST", Route, data),
-    // onSuccess: () => {
-    //     client.invalidateQueries(['cart'])
-    // }
+    mutationFn: (data) => ApiRequest("POST", Route, data),
   });
   return { mutation };
 };

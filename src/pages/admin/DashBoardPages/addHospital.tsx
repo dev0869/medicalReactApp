@@ -1,9 +1,8 @@
 import HorizontalLine from "@/components/ui/horizontal-line";
-import { accessToken } from "@/apis";
+import { ReceiptText } from "lucide-react";
+// WandSparkles, Images,
 import useAddDoctorHooks from "@/hooks/useAddDoctorHooks";
 import useAdminHooks, { useAdminPostHooks } from "@/hooks/useAdminHooks";
-import useFilterUserHooks from "@/hooks/useFilterUserHooks";
-import Select from "react-select";
 import { Facilityprops, HospitalProps } from "@/types";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -11,8 +10,12 @@ import ErrorMsg from "@/helper/errorMsg";
 import SelectOperation from "@/helper/SelectOperation";
 import { toast } from "react-toastify";
 const AddHospital = () => {
-  console.log(accessToken);
-  const filterUserProps = useFilterUserHooks();
+  const { data } = useAdminHooks("getAuth", "auth" || "");
+
+  const [selectedValue, setSelectedValue] = useState<{
+    value: string;
+  }>();
+
   const {
     removeVideo,
     removeImage,
@@ -21,11 +24,13 @@ const AddHospital = () => {
     selectedVideos,
     selectedImages,
   } = useAddDoctorHooks();
+  console.log(selectedImages);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<HospitalProps>();
+
   const { isLoading } = useAdminHooks("getAuth", "auth" || "");
 
   const { mutation } = useAdminPostHooks("/hospitals");
@@ -47,18 +52,12 @@ const AddHospital = () => {
   const onSubmit: SubmitHandler<HospitalProps> = async (data) => {
     const SubmittingData = {
       ...data,
-      userId: filterUserProps.searchUser.id,
+      userId: selectedValue?.value,
       facilities: facilities,
     };
 
-    mutation.mutate({ SubmittingData });
-    if (mutation.isError) {
-      toast.error("Opps! Something Went Wrong!");
-      console.log("errorrrr");
-    }
-    if (mutation.isSuccess) {
-      toast.success("Data successFully Submitted");
-    }
+    await mutation.mutateAsync(SubmittingData);
+    toast.success("Data successFully Submitted");
   };
 
   if (isLoading) {
@@ -69,15 +68,21 @@ const AddHospital = () => {
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="px-8 py-4 space-y-8">
         <div className="w-[80%] flex flex-col rounded-xl shadow-md border-2 mx-auto p-8 justify-center">
-          <main>Basic Details</main>
+          <main className="flex gap-2">
+            <ReceiptText />
+            <p className="font-bold text-blue-900">Basic Details</p>
+          </main>
           <hr className="py-2 my-4" />
           <div className="flex gap-4 justify-between">
-            <SelectOperation />
-        
+            <SelectOperation
+              name={"User"}
+              data={data}
+              setSelectedValue={setSelectedValue}
+            />
 
             <div className="w-full">
               <label className="block  mb-2   text-sm font-medium text-gray-900 dark:text-gray-300">
-                Hospital Name
+                <span className="text-red-500"> * </span>Hospital Name
               </label>
               <input
                 className="shadow-sm p-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block  mb-2  w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
@@ -90,7 +95,7 @@ const AddHospital = () => {
           <div className="flex gap-4 justify-between">
             <div className="w-full">
               <label className="block  my-2   text-sm font-medium text-gray-900 dark:text-gray-300">
-                hospitalEmail
+                <span className="text-red-500"> * </span>hospitalEmail
               </label>
               <input
                 type="email"
@@ -104,7 +109,7 @@ const AddHospital = () => {
                 htmlFor="email"
                 className="block  mb-2   text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                Contact Number
+                <span className="text-red-500"> * </span>Contact Number
               </label>
               <input
                 type="number"
@@ -117,7 +122,7 @@ const AddHospital = () => {
           </div>
           <div>
             <label className="block  mb-2   text-sm font-medium text-gray-900 dark:text-gray-300">
-              Hospital Address
+              <span className="text-red-500"> * </span>Hospital Address
             </label>
             <input
               {...register("address")}
@@ -128,7 +133,7 @@ const AddHospital = () => {
           <div className="flex gap-4 justify-between">
             <div className="w-full">
               <label className="block  mb-2   text-sm font-medium text-gray-900 dark:text-gray-300">
-                timing
+                <span className="text-red-500"> * </span>timing
               </label>
               <input
                 {...register("timing")}
@@ -141,7 +146,7 @@ const AddHospital = () => {
                 htmlFor="email"
                 className="block  mb-2   text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                specialization
+                <span className="text-red-500"> * </span> specialization
               </label>
               <input
                 {...register("specialization", {
@@ -158,7 +163,7 @@ const AddHospital = () => {
               htmlFor="email"
               className="block  mb-2   text-sm font-medium text-gray-900 dark:text-gray-300"
             >
-              description
+              <span className="text-red-500"> * </span>description
             </label>
             <textarea
               rows={9}
@@ -177,7 +182,7 @@ const AddHospital = () => {
           <div className="flex gap-4 justify-between">
             <div className="w-full">
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                Title
+                <span className="text-red-500"> * </span>Title
               </label>
               <input
                 type="text"
@@ -191,7 +196,7 @@ const AddHospital = () => {
             </div>
             <div className="w-full">
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                Price
+                <span className="text-red-500"> * </span>Price
               </label>
               <input
                 type="number"
@@ -213,30 +218,47 @@ const AddHospital = () => {
             className="shadow-sm p-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block  mb-2  w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
             placeholder="Enter Hospital Description"
           />
-          <div className="mb-4">
-            <button
-              type="button"
-              onClick={addFacility}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-            >
-              Add Facility
-            </button>
-          </div>
-          <div>
+          {facility.title && facility.price && facility.description && (
+            <div className="mb-4">
+              <button
+                type="button"
+                onClick={addFacility}
+                className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+              >
+                Add Facility
+              </button>
+            </div>
+          )}
+
+          <div className="flex flex-wrap justify-center gap-4">
             {facilities.map((facility, index) => (
-              <div key={index} className="flex items-center justify-between">
-                <p>
-                  {facility.title} - ${facility.price} - {facility.description}
-                </p>
-                <button
-                  type="button"
-                  onClick={() =>
-                    setFacilities(facilities.filter((_, i) => i !== index))
-                  }
-                  className="text-red-500"
-                >
-                  Remove
-                </button>
+              <div
+                key={index}
+                className="flex shadow-md w-[200px] p-4 items-center justify-between"
+              >
+                <div className="grid gap-1">
+                  <div className="flex justify-between gap-4">
+                    <h3 className="text-lg font-semibold tracking-tight">
+                      {" "}
+                      {facility.title}{" "}
+                    </h3>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setFacilities(facilities.filter((_, i) => i !== index))
+                      }
+                      className="text-red-500"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                  <p className="text-2xl font-semibold tracking-tighter">
+                    ${facility.price}
+                  </p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    {facility.description}{" "}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

@@ -10,13 +10,13 @@ export const config: Config = {
   },
 };
 
-export const api = axios.create({ baseURL: "http://192.168.1.22:9001/api/" });
+export const api = axios.create({ baseURL: "http://192.168.1.15:9001/api/" });
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
 
 export const ApiRequest = async <T>(
   method: HttpMethod,
   url: string,
-  payload?: T,
+  payload?: T
 ) => {
   try {
     let response;
