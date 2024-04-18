@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
-import useAdminHooks from "@/hooks/useAdminHooks";
+// import useAdminHooks from "@/hooks/useAdminHooks";
 
 const Reports = () => {
-  const { data: me } = useAdminHooks("auth", "auth/me" || "");
-  const { data: report } = useAdminHooks(
-    `reports:${me?._id}`,
-    `/report/${me?._id}` || ""
-  );
+  // const { data: me } = useAdminHooks("auth", "auth/me" || "");
+  // const { data: report } = useAdminHooks(
+  //   `reports:${me?._id}`,
+  //   `/report/${me?._id}` || ""
+  // );
 
   return (
     <>
