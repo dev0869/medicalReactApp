@@ -5,7 +5,7 @@ import { ColDef } from "ag-grid-community";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import useAdminHooks from "@/hooks/useAdminHooks";
 import { useSearchParams } from "react-router-dom";
-import { columnConfig } from "@/lib/utils";
+import { columnConfig } from "../utility";
 
 const DataTable = () => {
   const pagination = true;

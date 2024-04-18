@@ -10,7 +10,7 @@ export const config: Config = {
   },
 };
 
-export const api = axios.create({ baseURL: "http://192.168.1.15:9001/api/" });
+export const api = axios.create({ baseURL: "http://192.168.1.4:9001/api/" });
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
 
 export const ApiRequest = async <T>(
@@ -31,7 +31,7 @@ export const ApiRequest = async <T>(
         response = await api.put(url, payload);
         break;
       case "DELETE":
-        response = await api.delete(url);
+        response = await api.delete(url,config);
         break;
       default:
         throw new Error(`Unsupported HTTP method: ${method}`);

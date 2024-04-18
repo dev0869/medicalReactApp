@@ -31,7 +31,7 @@ export const Routes = [
   },
 ];
 
-export const AdminRoutes = [
+export const UserRoutes = [
   {
     title: "Home",
     path: "PersonalDetails",
@@ -59,7 +59,7 @@ export const AdminRoutes = [
   },
 ];
 
-export const UserRoutes: RoutesProps[] = [
+export const AdminRoutes: RoutesProps[] = [
   {
     title: "All Users",
     path: "section?route=users&key=getAuth&url=auth",

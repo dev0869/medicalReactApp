@@ -1,6 +1,5 @@
 import { ApiRequest } from "@/apis";
-import { useMutation, useQuery } from "@tanstack/react-query";
-
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 const useAdminHooks = (key: string | null | string[], Route: string) => {
   return useQuery({
     queryKey: [key],
@@ -11,8 +10,22 @@ const useAdminHooks = (key: string | null | string[], Route: string) => {
 export const useAdminPostHooks = (Route: string) => {
   const mutation = useMutation({
     mutationFn: (data) => ApiRequest("POST", Route, data),
+    
   });
   return { mutation };
+  
 };
+
+export const useAdminDeleteHooks = (props: { Route: string|null; refetch: string|null; }) => {
+  const {Route,refetch}=props;
+  const queryClient=useQueryClient()
+  const mutation = useMutation({
+    mutationFn: (data) => ApiRequest("DELETE", Route!, data),
+    onSuccess:()=>queryClient.invalidateQueries({ queryKey: [refetch] })
+  });
+
+  return { mutation };
+};
+
 
 export default useAdminHooks;
