@@ -5,22 +5,21 @@ import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const CustomButtonComponent = (props) => {
-
   const [params] = useSearchParams();
-  const key = params.get("key")||null;
+  const key = params.get("key") || null;
   const Url = params.get("url");
-  const {data}=props
-  const passingData={
-    Route:`${Url}/${data._id}`,
-    refetch:key
-  }
+  const { data } = props;
+  const passingData = {
+    Route: `${Url}/${data._id}`,
+    refetch: key,
+  };
   const { mutation } = useAdminDeleteHooks(passingData);
 
   if (mutation.isSuccess) {
-    return toast.success("Deleted Successfull!")
+    return toast.success("Deleted Successfull!");
   }
   if (mutation.isError) {
-    return toast.error("Operation Failed!")
+    return toast.error("Operation Failed!");
   }
   return (
     <div className="flex my-3 gap-4">
@@ -43,7 +42,6 @@ export const columnConfig: Record<string, ColDef[]> = {
     { field: "email", flex: 4 },
     { field: "illness" },
     { field: "Actions", cellRenderer: CustomButtonComponent },
-
   ],
   doctor: [
     { field: "fullname", flex: 3 },
@@ -61,7 +59,6 @@ export const columnConfig: Record<string, ColDef[]> = {
     { field: "addresses" },
     { field: "languages" },
     { field: "Actions", cellRenderer: CustomButtonComponent },
-
   ],
   hospital: [
     { field: "hospitalName", flex: 3 },
@@ -71,7 +68,6 @@ export const columnConfig: Record<string, ColDef[]> = {
     { field: "specialization" },
     { field: "timing", flex: 3 },
     { field: "Actions", cellRenderer: CustomButtonComponent },
-
   ],
   users: [
     { field: "fullname", flex: 3 },
@@ -79,6 +75,5 @@ export const columnConfig: Record<string, ColDef[]> = {
     { field: "email", flex: 6 },
     { field: "role", filter: true, floatingFilter: true },
     { field: "Actions", cellRenderer: CustomButtonComponent },
-
   ],
 };
