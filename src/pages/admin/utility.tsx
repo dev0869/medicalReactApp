@@ -24,8 +24,13 @@ const CustomButtonComponent = (props) => {
   }
   return (
     <div className="flex my-3 gap-4">
-      <Trash className="cursor-pointer" color="red" size={18} onClick={() => mutation.mutate(data._id)} />
-      <Pencil className="cursor-pointer" size={18} color="green"  />
+      <Trash
+        className="cursor-pointer"
+        color="red"
+        size={18}
+        onClick={() => mutation.mutate(data._id)}
+      />
+      <Pencil className="cursor-pointer" size={18} color="green" />
     </div>
   );
 };
