@@ -123,7 +123,7 @@ const Home = () => {
               <div className="flex flex-col items-center">
                 <StarIcon className="text-gray-500 mb-4 h-12 w-12" />
                 <h2 className="text-2xl font-semibold mb-3">Premium</h2>
-                <p className="text-gray-500 mb-6">Most popular features</p>
+                <p className="text-gray-500 mb-6">Most populars features</p>
                 <ul className="w-[80%] mb-6">
                   {plan.features.map((feature, idx) => (
                     <div
