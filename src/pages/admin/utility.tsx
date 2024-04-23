@@ -3,6 +3,13 @@ import { ColDef } from "ag-grid-community";
 import { Pencil, Trash } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { DialogDemo } from "./DialogDemo";
+
+
+ 
+
+
+
 
 const CustomButtonComponent = (props) => {
   const [params] = useSearchParams();
@@ -29,7 +36,7 @@ const CustomButtonComponent = (props) => {
         size={18}
         onClick={() => mutation.mutate(data._id)}
       />
-      <Pencil className="cursor-pointer" size={18} color="green" />
+      <DialogDemo datas={data}/>
     </div>
   );
 };

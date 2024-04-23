@@ -144,14 +144,14 @@ const About = () => {
           </p>
         </div>
         <div className="grid divide-y divide-neutral-200 mx-auto mt-8">
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className="w-[50%]">
             {faqArray.map((ele, id) => (
               <AccordionItem value={id.toString()}>
                 <AccordionTrigger>
-                  <p className="text-xl">{ele.title}</p>
+                  <p className="text-lg py-4">{ele.title}</p>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <p className="text-lg">{ele.content}</p>
+                  <p className="text-[16px]">{ele.content}</p>
                 </AccordionContent>
               </AccordionItem>
             ))}

@@ -97,7 +97,7 @@ const HospitalDetails = () => {
               you stay healthy and well.
             </p>
           </div>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 justify-center md:grid-cols-2 lg:grid-cols-3">
             {data.hospital.facilities.map(
               (
                 facility: {
